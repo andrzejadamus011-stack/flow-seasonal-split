@@ -37,7 +37,7 @@ export function FlowLogo({
 
   return (
     <svg
-      viewBox="0 0 300 108"
+      viewBox="0 0 360 108"
       role="img"
       aria-label={`FLOW${subtitle ? ` – ${subtitle}` : ""}`}
       className={className}
@@ -79,8 +79,8 @@ export function FlowLogo({
           style={{
             fontFamily: "var(--font-sans)",
             fontWeight: 600,
-            fontSize: "12.5px",
-            letterSpacing: "0.32em",
+            fontSize: "11px",
+            letterSpacing: "0.2em",
             textTransform: "uppercase",
           }}
         >
