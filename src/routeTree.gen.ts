@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NartyRouteImport } from './routes/narty'
+import { Route as RoweryRouteImport } from './routes/rowery'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NartyRoute = NartyRouteImport.update({
+  id: '/narty',
+  path: '/narty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoweryRoute = RoweryRouteImport.update({
+  id: '/rowery',
+  path: '/rowery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/narty': typeof NartyRoute
+  '/rowery': typeof RoweryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/narty': typeof NartyRoute
+  '/rowery': typeof RoweryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/narty': typeof NartyRoute
+  '/rowery': typeof RoweryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/narty' | '/rowery'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/narty' | '/rowery'
+  id: '__root__' | '/' | '/narty' | '/rowery'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  NartyRoute: typeof NartyRoute
+  RoweryRoute: typeof RoweryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/narty': {
+      id: '/narty'
+      path: '/narty'
+      fullPath: '/narty'
+      preLoaderRoute: typeof NartyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rowery': {
+      id: '/rowery'
+      path: '/rowery'
+      fullPath: '/rowery'
+      preLoaderRoute: typeof RoweryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  NartyRoute: NartyRoute,
+  RoweryRoute: RoweryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
