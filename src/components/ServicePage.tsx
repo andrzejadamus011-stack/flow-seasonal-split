@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { FlowLogo } from "@/components/FlowLogo";
+import logo from "@/assets/flow-logo.png";
 import { contact, type PriceGroup, type Section } from "@/data/flow";
 
 type Props = {
@@ -24,7 +24,7 @@ export function ServicePage(props: Props) {
       <header className="sticky top-0 z-30 border-b border-hairline bg-white/85 backdrop-blur">
         <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
           <Link to="/" aria-label="FLOW – strona główna">
-            <FlowLogo variant={props.theme} className="h-9 w-auto text-ink" />
+            <img src={logo} alt="FLOW" width={1389} height={784} className="h-10 w-auto" />
           </Link>
           <div className="flex items-center gap-5 text-[13px]">
             <a href="#zakres" className="hidden text-ink-muted transition hover:text-ink sm:block">
@@ -206,7 +206,7 @@ export function ServicePage(props: Props) {
 
       <footer className="border-t border-hairline">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-[13px] text-ink-muted sm:flex-row">
-          <FlowLogo variant="split" className="h-8 w-auto text-ink" />
+          <img src={logo} alt="FLOW" width={1389} height={784} className="h-9 w-auto" loading="lazy" />
           <p>
             FLOW · {contact.www} · {contact.phone}
           </p>
