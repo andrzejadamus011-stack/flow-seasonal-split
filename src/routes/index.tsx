@@ -1,9 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import bikeLogo from "@/assets/flow-bike.png.asset.json";
-import skiLogo from "@/assets/flow-ski.png.asset.json";
-import heroBike from "@/assets/hero-bike.jpg";
-import heroSki from "@/assets/hero-ski.jpg";
+import { FlowLogo } from "@/components/FlowLogo";
+import chooseBike from "@/assets/choose-bike.jpg";
+import chooseSki from "@/assets/choose-ski.jpg";
 import { contact } from "@/data/flow";
 
 export const Route = createFileRoute("/")({
@@ -39,81 +38,90 @@ function Chooser() {
     setPicked(side);
     setTimeout(() => {
       navigate({ to: side === "bike" ? "/rowery" : "/narty" });
-    }, 850);
+    }, 800);
   };
 
-  const widthOf = (side: Side) => {
+  const sizeOf = (side: Side) => {
     if (picked) return picked === side ? "100%" : "0%";
-    if (hover === side) return "62%";
-    if (hover) return "38%";
+    if (hover === side) return "58%";
+    if (hover) return "42%";
     return "50%";
   };
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-black text-steel">
-      <div className="flex h-full w-full flex-col md:flex-row">
-        <Half
-          side="bike"
-          themeClass="theme-bike"
-          hero={heroBike}
-          logo={bikeLogo.url}
-          title="Serwis rowerowy"
-          subtitle="Jeden serwis przez cały rok"
-          size={widthOf("bike")}
-          dimmed={picked !== null && picked !== "bike"}
-          onHover={setHover}
-          onPick={choose}
-        />
-        <Half
-          side="ski"
-          themeClass="theme-ski"
-          hero={heroSki}
-          logo={skiLogo.url}
-          title="Serwis narciarski"
-          subtitle="Dwa sezony, jedna pasja"
-          size={widthOf("ski")}
-          dimmed={picked !== null && picked !== "ski"}
-          onHover={setHover}
-          onPick={choose}
-        />
-      </div>
-
-      <div
-        className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 pb-6 text-center transition-opacity duration-500 ${
+    <main className="flex min-h-screen flex-col bg-white">
+      <header
+        className={`mx-auto w-full max-w-6xl px-6 pt-10 pb-8 text-center transition-opacity duration-500 ${
           picked ? "opacity-0" : "opacity-100"
         }`}
       >
-        <p className="display text-xs tracking-[0.35em] sm:text-sm">Wybierz swój sezon</p>
-        <p className="mt-2 text-xs opacity-70">
-          {contact.phone} · {contact.address}
+        <FlowLogo
+          variant="split"
+          subtitle="Serwis narciarski i rowerowy"
+          className="mx-auto h-[92px] w-auto text-ink"
+        />
+        <h1 className="sr-only">FLOW – serwis rowerowy i narciarski</h1>
+        <p className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-ink-muted">
+          Jeden warsztat, dwa sezony. Precyzyjne przygotowanie nart zimą i rowerów latem —
+          Szczyglice pod Krakowem.
         </p>
+        <p className="eyebrow mt-7">Wybierz sezon</p>
+      </header>
+
+      <div className="flex min-h-[62vh] flex-1 flex-col gap-px bg-hairline md:flex-row">
+        <Half
+          side="ski"
+          theme="theme-ski"
+          image={chooseSki}
+          label="Serwis narciarski"
+          note="Ostrzenie, smarowanie, wiązania"
+          size={sizeOf("ski")}
+          hidden={picked !== null && picked !== "ski"}
+          onHover={setHover}
+          onPick={choose}
+        />
+        <Half
+          side="bike"
+          theme="theme-bike"
+          image={chooseBike}
+          label="Serwis rowerowy"
+          note="Przeglądy, naprawy, e-bike"
+          size={sizeOf("bike")}
+          hidden={picked !== null && picked !== "bike"}
+          onHover={setHover}
+          onPick={choose}
+        />
       </div>
 
-      <h1 className="sr-only">FLOW – serwis rowerowy i narciarski</h1>
+      <footer
+        className={`mx-auto w-full max-w-6xl px-6 py-6 text-center text-[13px] text-ink-muted transition-opacity duration-500 ${
+          picked ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        {contact.address} · {contact.phone} · {contact.hours}
+      </footer>
     </main>
   );
 }
 
 function Half({
   side,
-  themeClass,
-  hero,
-  logo,
-  title,
-  subtitle,
+  theme,
+  image,
+  label,
+  note,
   size,
-  dimmed,
+  hidden,
   onHover,
   onPick,
 }: {
   side: Side;
-  themeClass: string;
-  hero: string;
-  logo: string;
-  title: string;
-  subtitle: string;
+  theme: string;
+  image: string;
+  label: string;
+  note: string;
   size: string;
-  dimmed: boolean;
+  hidden: boolean;
   onHover: (s: Side | null) => void;
   onPick: (s: Side) => void;
 }) {
@@ -124,38 +132,29 @@ function Half({
       onMouseLeave={() => onHover(null)}
       onClick={() => onPick(side)}
       style={{ flexBasis: size }}
-      className={`${themeClass} group relative isolate h-1/2 min-h-0 flex-none cursor-pointer overflow-hidden transition-[flex-basis,opacity] duration-[850ms] ease-[cubic-bezier(0.76,0,0.24,1)] md:h-full ${
-        dimmed ? "opacity-0" : "opacity-100"
+      className={`${theme} group relative isolate min-h-[38vh] flex-none cursor-pointer overflow-hidden bg-white text-left transition-[flex-basis,opacity] duration-[800ms] ease-[cubic-bezier(0.76,0,0.24,1)] md:min-h-0 ${
+        hidden ? "opacity-0" : "opacity-100"
       }`}
     >
       <img
-        src={hero}
-        alt={title}
-        width={1536}
-        height={1024}
-        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-55 transition-transform duration-[1200ms] group-hover:scale-105"
+        src={image}
+        alt={label}
+        width={1200}
+        height={1504}
+        className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]"
       />
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(180deg, color-mix(in oklab, var(--brand-dark) 60%, transparent), color-mix(in oklab, var(--brand-dark) 92%, black))",
-        }}
-      />
-      <div className="flex h-full flex-col items-center justify-center gap-6 px-6">
-        <img
-          src={logo}
-          alt={`FLOW ${title}`}
-          className="w-[min(420px,72vw)] drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="text-center">
-          <p className="display text-2xl sm:text-3xl">{title}</p>
-          <p className="mt-1 text-sm tracking-widest uppercase opacity-75">{subtitle}</p>
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-white/85 to-transparent" />
+
+      <div className="absolute bottom-0 left-0 flex w-full items-end justify-between gap-4 p-6 sm:p-8">
+        <div>
+          <span className="brand-text block text-[11px] font-semibold tracking-[0.22em] uppercase">
+            {side === "ski" ? "Zima" : "Lato"}
+          </span>
+          <span className="display mt-1 block text-2xl text-ink sm:text-3xl">{label}</span>
+          <span className="mt-1 block text-[13px] text-ink-muted">{note}</span>
         </div>
-        <span
-          className="brand-bg rounded-full px-6 py-2 text-xs font-semibold tracking-widest uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        >
-          Wejdź
+        <span className="brand-bg flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-300 group-hover:translate-x-1">
+          →
         </span>
       </div>
     </button>
