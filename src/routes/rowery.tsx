@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/ServicePage";
-import bikeLogo from "@/assets/flow-bike.png.asset.json";
 import heroBike from "@/assets/hero-bike.jpg";
 import { bike } from "@/data/flow";
 
@@ -25,7 +24,6 @@ export const Route = createFileRoute("/rowery")({
   component: () => (
     <ServicePage
       theme="bike"
-      logo={bikeLogo.url}
       hero={heroBike}
       name={bike.name}
       tagline={bike.tagline}

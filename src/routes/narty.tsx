@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/ServicePage";
-import skiLogo from "@/assets/flow-ski.png.asset.json";
 import heroSki from "@/assets/hero-ski.jpg";
 import { ski } from "@/data/flow";
 
@@ -25,7 +24,6 @@ export const Route = createFileRoute("/narty")({
   component: () => (
     <ServicePage
       theme="ski"
-      logo={skiLogo.url}
       hero={heroSki}
       name={ski.name}
       tagline={ski.tagline}
