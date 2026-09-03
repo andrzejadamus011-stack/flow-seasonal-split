@@ -68,8 +68,8 @@ export function ServicePage(props: Props) {
           </div>
           <dl className="mt-10 grid gap-x-8 gap-y-3 border-t border-hairline pt-6 sm:grid-cols-3">
             {props.values.map((v) => (
-              <div key={v}>
-                <dt className="brand-text text-sm font-semibold">•</dt>
+              <div key={v} className="border-t-2 brand-border pt-3">
+                <dt className="sr-only">Wyróżnik</dt>
                 <dd className="text-[13px] leading-snug text-ink-muted">{v}</dd>
               </div>
             ))}
