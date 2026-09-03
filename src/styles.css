@@ -212,8 +212,8 @@ h1, h2, h3, .display {
 .flow-in { animation: flow-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
 @keyframes logo-float {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, calc(-50% - 10px)) scale(1.012); }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.012); }
 }
 
 .logo-float { animation: logo-float 5.5s ease-in-out infinite; }

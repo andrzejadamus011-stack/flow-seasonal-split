@@ -72,13 +72,16 @@ function Chooser() {
         />
       </div>
 
-      <img
-        src={logo}
-        alt="FLOW – serwis rowerowy i narciarski"
-        className={`pointer-events-none absolute top-1/2 left-1/2 z-20 w-[min(680px,84vw)] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_24px_60px_rgba(0,0,0,0.45)] transition-all duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
-          picked ? "scale-[1.35] opacity-0" : "logo-float scale-100 opacity-100"
-        }`}
-      />
+      <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+        <img
+          src={logo}
+          alt="FLOW – serwis rowerowy i narciarski"
+          className={`w-[min(680px,84vw)] drop-shadow-[0_24px_60px_rgba(0,0,0,0.45)] transition-all duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
+            picked ? "scale-[1.35] opacity-0" : "logo-float opacity-100"
+          }`}
+        />
+      </div>
+
     </main>
   );
 }
