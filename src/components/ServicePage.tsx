@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
+import { FlowLogo } from "@/components/FlowLogo";
 import { contact, type PriceGroup, type Section } from "@/data/flow";
 
 type Props = {
   theme: "bike" | "ski";
-  logo: string;
   hero: string;
   name: string;
   tagline: string;
@@ -17,107 +17,108 @@ type Props = {
 
 export function ServicePage(props: Props) {
   const themeClass = props.theme === "bike" ? "theme-bike" : "theme-ski";
+  const season = props.theme === "bike" ? "Sezon letni" : "Sezon zimowy";
 
   return (
-    <div className={`${themeClass} min-h-screen bg-black text-steel`}>
-      {/* HERO */}
-      <header className="relative isolate overflow-hidden">
-        <img
-          src={props.hero}
-          alt={props.name}
-          width={1536}
-          height={1024}
-          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-45"
-        />
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              "linear-gradient(180deg, color-mix(in oklab, var(--brand-dark) 85%, transparent), color-mix(in oklab, var(--brand-dark) 96%, black))",
-          }}
-        />
-
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 text-xs tracking-widest uppercase">
-          <Link to="/" className="opacity-80 transition hover:opacity-100">
-            ← Wybór serwisu
+    <div className={`${themeClass} min-h-screen bg-white text-ink`}>
+      <header className="sticky top-0 z-30 border-b border-hairline bg-white/85 backdrop-blur">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+          <Link to="/" aria-label="FLOW – strona główna">
+            <FlowLogo variant={props.theme} className="h-9 w-auto text-ink" />
           </Link>
-          <Link
-            to={props.otherHref}
-            className="rounded-full border border-white/25 px-4 py-2 transition hover:border-white/60"
-          >
-            {props.otherLabel}
-          </Link>
-        </nav>
-
-        <div className="mx-auto max-w-6xl px-5 pt-10 pb-20 text-center">
-          <img
-            src={props.logo}
-            alt={`FLOW ${props.name}`}
-            className="mx-auto w-[min(520px,88vw)] drop-shadow-2xl flow-in"
-          />
-          <h1 className="mt-8 text-4xl leading-[0.95] sm:text-6xl flow-in">{props.tagline}</h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base/relaxed opacity-85 flow-in">{props.lead}</p>
-
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <div className="flex items-center gap-5 text-[13px]">
+            <a href="#zakres" className="hidden text-ink-muted transition hover:text-ink sm:block">
+              Zakres
+            </a>
+            <a href="#cennik" className="hidden text-ink-muted transition hover:text-ink sm:block">
+              Cennik
+            </a>
+            <Link to={props.otherHref} className="text-ink-muted transition hover:text-ink">
+              {props.otherLabel}
+            </Link>
             <a
               href={contact.phoneHref}
-              className="brand-bg brand-glow rounded-full px-7 py-3 text-sm font-semibold tracking-widest uppercase transition hover:brightness-115"
+              className="brand-bg rounded-full px-4 py-2 text-[13px] font-medium text-white transition hover:opacity-90"
+            >
+              {contact.phone}
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      {/* HERO */}
+      <section className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-2 md:items-center md:py-20">
+        <div className="flow-in">
+          <p className="eyebrow brand-text">{season}</p>
+          <h1 className="mt-4 text-4xl leading-[1.05] sm:text-5xl">{props.tagline}</h1>
+          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-ink-muted">{props.lead}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={contact.phoneHref}
+              className="brand-bg rounded-full px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
             >
               Zadzwoń {contact.phone}
             </a>
             <a
               href="#cennik"
-              className="rounded-full border border-white/30 px-7 py-3 text-sm font-semibold tracking-widest uppercase transition hover:bg-white/10"
+              className="rounded-full border border-hairline px-6 py-3 text-sm font-medium transition hover:border-ink"
             >
-              Cennik
+              Zobacz cennik
             </a>
           </div>
-
-          <ul className="mx-auto mt-12 grid max-w-3xl gap-3 sm:grid-cols-3">
+          <dl className="mt-10 grid gap-x-8 gap-y-3 border-t border-hairline pt-6 sm:grid-cols-3">
             {props.values.map((v) => (
-              <li
-                key={v}
-                className="brand-panel rounded-xl px-4 py-4 text-sm tracking-wide uppercase backdrop-blur"
-              >
-                {v}
-              </li>
+              <div key={v} className="border-t-2 brand-border pt-3">
+                <dt className="sr-only">Wyróżnik</dt>
+                <dd className="text-[13px] leading-snug text-ink-muted">{v}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </div>
-      </header>
 
-      {/* O FIRMIE */}
-      <section className="mx-auto max-w-6xl px-5 py-20">
-        <h2 className="text-3xl sm:text-4xl">O nas</h2>
-        <div className="mt-6 grid gap-8 md:grid-cols-2">
-          <p className="text-base/relaxed opacity-85">
-            FLOW to serwis rowerowo-narciarski prowadzony przez ludzi, którzy sami jeżdżą — latem po
-            leśnych szlakach, zimą po stoku. Jeden warsztat obsługuje Cię przez cały rok: gdy kończy
-            się sezon rowerowy, zaczyna się narciarski.
-          </p>
-          <p className="text-base/relaxed opacity-85">
-            Każde zlecenie kończymy dopiero wtedy, gdy sprzęt działa tak, jak byśmy chcieli w swoim
-            własnym. Profesjonalnie, szybko i solidnie — bez ukrytych kosztów i z jasną informacją,
-            co i dlaczego zostało zrobione.
-          </p>
+        <div className="flow-in overflow-hidden rounded-2xl border border-hairline">
+          <img
+            src={props.hero}
+            alt={props.name}
+            width={1600}
+            height={1104}
+            className="aspect-[4/3] w-full object-cover"
+          />
         </div>
       </section>
 
-      {/* ZAKRES USŁUG */}
-      <section className="mx-auto max-w-6xl px-5 pb-20">
-        <h2 className="text-3xl sm:text-4xl">Zakres usług</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
+      {/* O NAS */}
+      <section className="border-y border-hairline bg-surface">
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-14 md:grid-cols-[0.8fr_1.2fr] md:py-18">
+          <h2 className="text-2xl sm:text-3xl">O nas</h2>
+          <div className="space-y-4 text-[15px] leading-relaxed text-ink-muted">
+            <p>
+              FLOW to warsztat prowadzony przez ludzi, którzy sami jeżdżą — zimą na nartach, latem
+              na rowerze. Każdy sprzęt traktujemy tak, jakby był nasz: dokładnie, bez pośpiechu i z
+              pełną informacją o tym, co i dlaczego wymaga serwisu.
+            </p>
+            <p>
+              Pracujemy na profesjonalnych narzędziach i sprawdzonych materiałach. Przed
+              rozpoczęciem pracy zawsze przedstawiamy zakres i koszt — bez niespodzianek na
+              odbiorze.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ZAKRES */}
+      <section id="zakres" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-14 md:py-18">
+        <p className="eyebrow">Zakres usług</p>
+        <h2 className="mt-3 text-2xl sm:text-3xl">Co dokładnie robimy</h2>
+        <div className="mt-10 grid gap-10 md:grid-cols-2">
           {props.sections.map((s) => (
-            <div key={s.title} className="brand-panel rounded-2xl p-7">
-              <h3 className="brand-text text-xl">{s.title}</h3>
-              <ul className="mt-5 space-y-3">
+            <div key={s.title}>
+              <h3 className="text-lg">{s.title}</h3>
+              <ul className="mt-4 divide-y divide-hairline border-t border-hairline">
                 {s.items.map((i) => (
-                  <li key={i} className="flex gap-3 text-sm opacity-90">
-                    <span
-                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
-                      style={{ background: "var(--brand-light)" }}
-                    />
-                    {i}
+                  <li key={i} className="flex gap-3 py-2.5 text-[14px] text-ink-muted">
+                    <span className="brand-text">—</span>
+                    <span>{i}</span>
                   </li>
                 ))}
               </ul>
@@ -127,56 +128,89 @@ export function ServicePage(props: Props) {
       </section>
 
       {/* CENNIK */}
-      <section id="cennik" className="mx-auto max-w-6xl scroll-mt-10 px-5 pb-20">
-        <h2 className="text-3xl sm:text-4xl">Cennik</h2>
-        <p className="mt-3 text-sm opacity-70">
-          Ceny orientacyjne. Ostateczna wycena po oględzinach sprzętu — zawsze przed rozpoczęciem
-          pracy.
-        </p>
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {props.prices.map((g) => (
-            <div key={g.title} className="brand-panel rounded-2xl p-7">
-              <h3 className="brand-text text-xl">{g.title}</h3>
-              <dl className="mt-5 divide-y divide-white/10">
-                {g.rows.map((r) => (
-                  <div key={r.name} className="flex items-baseline justify-between gap-4 py-3">
-                    <dt className="text-sm opacity-90">{r.name}</dt>
-                    <dd className="display text-base whitespace-nowrap">{r.price}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* KONTAKT */}
-      <section id="kontakt" className="mx-auto max-w-6xl px-5 pb-24">
-        <div className="brand-panel brand-glow rounded-3xl p-8 sm:p-12">
-          <h2 className="text-3xl sm:text-4xl">Kontakt</h2>
-          <div className="mt-8 grid gap-8 sm:grid-cols-2">
-            <div>
-              <a href={contact.phoneHref} className="display block text-4xl sm:text-5xl">
-                {contact.phone}
-              </a>
-              <a href={`mailto:${contact.email}`} className="mt-3 block text-sm opacity-85">
-                {contact.email}
-              </a>
-              <p className="mt-1 text-sm opacity-85">{contact.www}</p>
-            </div>
-            <div className="text-sm opacity-85">
-              <p className="brand-text display text-base">Godziny otwarcia</p>
-              <p className="mt-2">{contact.hours}</p>
-              <p className="opacity-70">{contact.hoursNote}</p>
-              <p className="brand-text display mt-6 text-base">Lokalizacja</p>
-              <p className="mt-2">{contact.address}</p>
-            </div>
+      <section id="cennik" className="border-t border-hairline bg-surface">
+        <div className="mx-auto max-w-6xl scroll-mt-20 px-6 py-14 md:py-18">
+          <p className="eyebrow">Cennik</p>
+          <h2 className="mt-3 text-2xl sm:text-3xl">Ceny orientacyjne</h2>
+          <p className="mt-3 max-w-xl text-[14px] text-ink-muted">
+            Ostateczną wycenę ustalamy po oględzinach sprzętu — zawsze przed rozpoczęciem pracy.
+            Ceny nie obejmują części zamiennych.
+          </p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {props.prices.map((g) => (
+              <div key={g.title} className="rounded-2xl border border-hairline bg-white p-6">
+                <h3 className="text-base">{g.title}</h3>
+                <ul className="mt-4 divide-y divide-hairline">
+                  {g.rows.map((r) => (
+                    <li key={r.name} className="flex items-baseline justify-between gap-6 py-3">
+                      <span className="text-[14px] text-ink-muted">{r.name}</span>
+                      <span className="display shrink-0 text-[15px]">{r.price}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-8 text-center text-xs tracking-widest uppercase opacity-60">
-        FLOW — {props.name} · Zadbaj o swój sprzęt, ciesz się każdą chwilą
+      {/* KONTAKT */}
+      <section id="kontakt" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-14 md:py-18">
+        <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="eyebrow">Kontakt</p>
+            <h2 className="mt-3 text-2xl sm:text-3xl">Przyjedź lub zadzwoń</h2>
+            <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-ink-muted">
+              Najlepiej ustalić termin telefonicznie — dzięki temu odbierzesz sprzęt szybciej.
+            </p>
+          </div>
+          <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            <div>
+              <dt className="eyebrow">Telefon</dt>
+              <dd className="mt-1">
+                <a href={contact.phoneHref} className="brand-text text-lg font-medium">
+                  {contact.phone}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="eyebrow">E-mail</dt>
+              <dd className="mt-1 text-[15px]">
+                <a href={`mailto:${contact.email}`} className="hover:underline">
+                  {contact.email}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="eyebrow">Adres</dt>
+              <dd className="mt-1 text-[15px] text-ink-muted">{contact.address}</dd>
+            </div>
+            <div>
+              <dt className="eyebrow">Godziny</dt>
+              <dd className="mt-1 text-[15px] text-ink-muted">
+                {contact.hours}
+                <span className="mt-1 block text-[13px]">{contact.hoursNote}</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <div className="mt-10 overflow-hidden rounded-2xl border border-hairline">
+          <iframe
+            title="Mapa – FLOW Szczyglice"
+            src="https://www.google.com/maps?q=ul.%20Krakowska%2050,%2032-083%20Szczyglice&output=embed"
+            className="h-[320px] w-full border-0"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <footer className="border-t border-hairline">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-[13px] text-ink-muted sm:flex-row">
+          <FlowLogo variant="split" className="h-8 w-auto text-ink" />
+          <p>
+            FLOW · {contact.www} · {contact.phone}
+          </p>
+        </div>
       </footer>
     </div>
   );

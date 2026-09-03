@@ -143,72 +143,70 @@
   }
 }
 
-/* ---------- FLOW brand system ---------- */
+/* ---------- FLOW brand system (light, minimal) ---------- */
 @theme inline {
-  --font-display: "Barlow Condensed", system-ui, sans-serif;
-  --font-sans: "Barlow", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
   --color-bike: var(--bike);
-  --color-bike-light: var(--bike-light);
-  --color-bike-dark: var(--bike-dark);
+  --color-bike-soft: var(--bike-soft);
   --color-ski: var(--ski);
-  --color-ski-light: var(--ski-light);
-  --color-ski-dark: var(--ski-dark);
-  --color-steel: var(--steel);
+  --color-ski-soft: var(--ski-soft);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-hairline: var(--hairline);
+  --color-surface: var(--surface);
 }
 
 :root {
-  --bike: oklch(0.52 0.19 145);
-  --bike-light: oklch(0.72 0.22 145);
-  --bike-dark: oklch(0.26 0.09 148);
-  --ski: oklch(0.45 0.14 250);
-  --ski-light: oklch(0.68 0.15 245);
-  --ski-dark: oklch(0.22 0.06 253);
-  --steel: oklch(0.93 0.005 250);
+  --bike: oklch(0.52 0.15 152);
+  --bike-soft: oklch(0.96 0.03 152);
+  --ski: oklch(0.48 0.14 250);
+  --ski-soft: oklch(0.96 0.025 250);
+  --ink: oklch(0.21 0.015 250);
+  --ink-muted: oklch(0.52 0.012 250);
+  --hairline: oklch(0.91 0.006 250);
+  --surface: oklch(0.985 0.002 250);
 }
 
 body {
   font-family: var(--font-sans);
+  background-color: white;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, .display {
   font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
   font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
 }
 
 @utility theme-bike {
   --brand: var(--bike);
-  --brand-light: var(--bike-light);
-  --brand-dark: var(--bike-dark);
+  --brand-soft: var(--bike-soft);
 }
 
 @utility theme-ski {
   --brand: var(--ski);
-  --brand-light: var(--ski-light);
-  --brand-dark: var(--ski-dark);
+  --brand-soft: var(--ski-soft);
 }
 
-@utility brand-text {
-  color: var(--brand-light);
-}
-
-@utility brand-bg {
-  background-color: var(--brand);
-}
-
-@utility brand-panel {
-  background: linear-gradient(160deg, color-mix(in oklab, var(--brand-dark) 92%, black), color-mix(in oklab, var(--brand) 40%, black));
-  border: 1px solid color-mix(in oklab, var(--brand-light) 30%, transparent);
-}
-
-@utility brand-glow {
-  box-shadow: 0 20px 60px -20px color-mix(in oklab, var(--brand-light) 55%, transparent);
-}
+@utility brand-text { color: var(--brand); }
+@utility brand-bg { background-color: var(--brand); }
+@utility brand-soft { background-color: var(--brand-soft); }
+@utility brand-border { border-color: color-mix(in oklab, var(--brand) 28%, white); }
 
 @keyframes flow-in {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.flow-in { animation: flow-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.flow-in { animation: flow-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
