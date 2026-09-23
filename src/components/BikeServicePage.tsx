@@ -463,7 +463,7 @@ export function BikeServicePage() {
              <p className="mt-4 text-[14px] leading-relaxed text-pro-muted">
               Zadzwoń i ustal zakres prac oraz dogodny termin bezpośrednio z serwisem.
             </p>
-            <a href={contact.phoneHref} className="brand-text mt-6 inline-flex items-center gap-3 text-2xl font-bold">
+            <a href={contact.phoneHref} className="brand-text mt-6 inline-flex items-center gap-3 whitespace-pre-line text-2xl font-bold">
               <Phone className="size-6" aria-hidden="true" />
               {contact.phone}
             </a>
@@ -485,7 +485,7 @@ export function BikeServicePage() {
               </div>
               <div>
                 <p className="eyebrow">Telefon</p>
-                <a href={contact.phoneHref} className="brand-text mt-2 block text-[15px] font-medium">
+                <a href={contact.phoneHref} className="brand-text mt-2 block whitespace-pre-line text-[15px] font-medium">
                   {contact.phone}
                 </a>
               </div>
