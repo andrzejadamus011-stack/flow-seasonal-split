@@ -37,6 +37,7 @@ const services = [
   {
     number: "01",
     title: "OKLEJANIE FOLIĄ PPF",
+    price: "od 200 zł",
     description:
       "Przezroczysta folia chroni ramę przed odpryskami, rysami i przetarciami. Jest niewidoczna, drobne rysy same się na niej wygładzają, a przy sprzedaży roweru zdejmiesz ją bez śladu. Oklejamy całą ramę albo tylko najbardziej narażone miejsca.",
     Icon: Bike,
@@ -44,6 +45,7 @@ const services = [
   {
     number: "02",
     title: "Serwis amortyzacji",
+    price: "od 150 zł",
     description:
       "Serwis widelców, damperów i sztyc regulowanych — FOX, RockShox i inne marki. Wymiana olejów, uszczelek i przywrócenie płynnej pracy zawieszenia.",
     Icon: Gauge,
@@ -51,6 +53,7 @@ const services = [
   {
     number: "03",
     title: "Napęd i hamulce",
+    price: "od 50 zł",
     description:
       "Diagnostyka i naprawa napędu oraz hamulców mechanicznych i hydraulicznych. Cicha, precyzyjna zmiana biegów i pewne hamowanie.",
     Icon: Settings,
@@ -58,6 +61,7 @@ const services = [
   {
     number: "04",
     title: "Koła",
+    price: "od 50 zł",
     description:
       "Centrowanie, zaplatanie, serwis piast i montaż systemu tubeless. Koła, które kręcą się równo i bez luzów.",
     Icon: CircleDot,
@@ -65,12 +69,14 @@ const services = [
   {
     number: "05",
     title: "Części i montaż",
+    price: "od 20 zł",
     description: "Pomagamy dobrać komponenty do Twojego stylu jazdy, zamawiamy je i montujemy.",
     Icon: Wrench,
   },
   {
     number: "06",
     title: "Przygotowanie do sezonu",
+    price: "od 199 zł",
     description: "Kompleksowe przygotowanie roweru przed sezonem, zawodami lub wyjazdem.",
     Icon: CalendarDays,
   },
