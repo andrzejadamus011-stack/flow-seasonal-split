@@ -157,7 +157,7 @@ export function BikeServicePage() {
   };
 
   return (
-    <div className="theme-bike min-h-screen bg-white text-ink">
+    <div className="theme-bike min-h-screen scroll-smooth bg-white text-ink">
       <header className="sticky top-0 z-30 border-b border-hairline bg-white/90 backdrop-blur">
         <nav className="mx-auto flex min-h-18 max-w-6xl items-center justify-between gap-5 px-6 py-2.5 md:min-h-24 md:py-3">
           <Link to="/" aria-label="FLOW – strona główna" className="shrink-0">

@@ -5,4 +5,4 @@
 - [x] Wprowadzić kategoryzowany cennik.
 - [x] Dodać formularz zlecenia otwierający przygotowaną wiadomość e-mail.
 - [x] Uporządkować kontakt, mapę i link do wyznaczania trasy.
-- [ ] Zweryfikować stronę na desktopie i mobile oraz sprawdzić stan podglądu.
+- [x] Zweryfikować stronę na desktopie i mobile oraz sprawdzić stan podglądu.
