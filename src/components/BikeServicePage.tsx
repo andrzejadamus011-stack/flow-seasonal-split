@@ -530,8 +530,9 @@ export function BikeServicePage() {
       </section>
 
       <footer className="border-t border-pro-line bg-pro-bg text-pro-text">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-4 px-6 py-8 text-[13px] text-pro-muted sm:flex-row">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-6 py-8 text-[13px] text-pro-muted sm:flex-row sm:justify-between">
           <p>FLOW · {contact.www} · {contact.phones.map((p) => p.label).join(" · ")}</p>
+          <p>Creat by Pat&amp;Mat.corp</p>
         </div>
       </footer>
     </div>
