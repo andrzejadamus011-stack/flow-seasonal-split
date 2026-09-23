@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "FLOW – jeden serwis przez cały rok. Profesjonalny serwis rowerowy latem i serwis narciarski zimą. Szczyglice, ul. Krakowska 50. Tel. 664 993 492.",
+          "FLOW – jeden serwis przez cały rok. Profesjonalny serwis rowerowy latem i serwis narciarski zimą. Szczyglice, ul. Krakowska 50.",
       },
       { property: "og:title", content: "FLOW – Serwis rowerowy i narciarski" },
       {
@@ -27,61 +27,49 @@ export const Route = createFileRoute("/")({
 
 type Side = "bike" | "ski";
 
+// Path flowing across the screen like the trail/river in the logo
+const TRAIL =
+  "M -80 820 C 220 760, 380 560, 640 600 S 1060 820, 1300 520 S 1560 160, 1700 120";
+
 function Chooser() {
   const navigate = useNavigate();
-  const [hover, setHover] = useState<Side | null>(null);
   const [picked, setPicked] = useState<Side | null>(null);
 
   const choose = (side: Side) => {
     if (picked) return;
     setPicked(side);
-    setTimeout(() => {
-      navigate({ to: side === "bike" ? "/rowery" : "/narty" });
-    }, 900);
-  };
-
-  const sizeOf = (side: Side) => {
-    if (picked) return picked === side ? "100%" : "0%";
-    if (hover === side) return "60%";
-    if (hover) return "40%";
-    return "50%";
+    setTimeout(() => navigate({ to: side === "bike" ? "/rowery" : "/narty" }), 1500);
   };
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-white">
+    <main className="flow-chooser relative h-screen w-screen overflow-hidden bg-background">
       <h1 className="sr-only">FLOW – serwis rowerowy i narciarski</h1>
 
-      <div className="flex h-full w-full flex-col md:flex-row">
-        <Half
-          side="bike"
-          image={chooseBike}
-          label="Serwis rowerowy"
-          size={sizeOf("bike")}
-          gone={picked !== null && picked !== "bike"}
-          onHover={setHover}
-          onPick={choose}
-        />
-        <Half
-          side="ski"
-          image={chooseSki}
-          label="Serwis narciarski"
-          size={sizeOf("ski")}
-          gone={picked !== null && picked !== "ski"}
-          onHover={setHover}
-          onPick={choose}
-        />
+      <div className="flex h-full w-full">
+        <Half side="bike" image={chooseBike} label="Serwis rowerowy" picked={picked} onPick={choose} />
+        <Half side="ski" image={chooseSki} label="Serwis narciarski" picked={picked} onPick={choose} />
       </div>
 
+      {/* Divider of the logo sits at ~48.3% of the image width – shift so it matches the split */}
       <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
         <img
           src={logo}
           alt="FLOW – serwis rowerowy i narciarski"
-          className={`w-[min(680px,84vw)] drop-shadow-[0_24px_60px_rgba(0,0,0,0.45)] transition-all duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
-            picked ? "scale-[1.35] opacity-0" : "logo-float opacity-100"
+          className={`w-[min(680px,92vw)] translate-x-[1.7%] drop-shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition-opacity duration-500 ${
+            picked ? "opacity-0 delay-700" : "opacity-100"
           }`}
         />
       </div>
 
+      {picked && (
+        <div className={`pointer-events-none absolute inset-0 z-30 trail-${picked}`}>
+          <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+            <path d={TRAIL} className="trail-glow" />
+            <path d={TRAIL} className="trail-line" />
+          </svg>
+          <div className="trail-fill absolute inset-0" />
+        </div>
+      )}
     </main>
   );
 }
@@ -90,37 +78,30 @@ function Half({
   side,
   image,
   label,
-  size,
-  gone,
-  onHover,
+  picked,
   onPick,
 }: {
   side: Side;
   image: string;
   label: string;
-  size: string;
-  gone: boolean;
-  onHover: (s: Side | null) => void;
+  picked: Side | null;
   onPick: (s: Side) => void;
 }) {
   return (
     <button
       type="button"
       aria-label={label}
-      onMouseEnter={() => onHover(side)}
-      onMouseLeave={() => onHover(null)}
       onClick={() => onPick(side)}
-      style={{ flexBasis: size }}
-      className={`group relative isolate h-1/2 min-h-0 flex-none cursor-pointer overflow-hidden transition-[flex-basis,opacity] duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] md:h-full ${
-        gone ? "opacity-0" : "opacity-100"
-      }`}
+      className="group relative isolate h-full w-1/2 cursor-pointer overflow-hidden"
     >
       <img
         src={image}
         alt={label}
-        width={848}
-        height={1272}
-        className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+        width={1080}
+        height={1600}
+        className={`absolute inset-0 -z-10 h-full w-full object-cover brightness-[0.8] transition duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-100 ${
+          picked && picked !== side ? "brightness-[0.35]" : ""
+        }`}
       />
     </button>
   );
