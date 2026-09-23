@@ -463,10 +463,14 @@ export function BikeServicePage() {
              <p className="mt-4 text-[14px] leading-relaxed text-pro-muted">
               Zadzwoń i ustal zakres prac oraz dogodny termin bezpośrednio z serwisem.
             </p>
-            <a href={contact.phoneHref} className="brand-text mt-6 inline-flex items-center gap-3 whitespace-pre-line text-2xl font-bold">
-              <Phone className="size-6" aria-hidden="true" />
-              {contact.phone}
-            </a>
+            <div className="mt-6 flex flex-col gap-3">
+              {contact.phones.map((phone) => (
+                <a key={phone.href} href={phone.href} className="brand-text inline-flex items-center gap-3 text-2xl font-bold transition hover:brightness-110">
+                  <Phone className="size-6" aria-hidden="true" />
+                  {phone.label}
+                </a>
+              ))}
+            </div>
           </aside>
         </div>
       </section>
@@ -485,9 +489,13 @@ export function BikeServicePage() {
               </div>
               <div>
                 <p className="eyebrow">Telefon</p>
-                <a href={contact.phoneHref} className="brand-text mt-2 block whitespace-pre-line text-[15px] font-medium">
-                  {contact.phone}
-                </a>
+                <div className="mt-2 flex flex-col gap-1">
+                  {contact.phones.map((phone) => (
+                    <a key={phone.href} href={phone.href} className="brand-text text-[15px] font-medium transition hover:brightness-110">
+                      {phone.label}
+                    </a>
+                  ))}
+                </div>
               </div>
               <div>
                 <p className="eyebrow">Godziny</p>
