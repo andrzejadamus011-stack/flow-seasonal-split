@@ -335,3 +335,21 @@ h1, h2, h3, .display {
   .pro-card-glow { transition: none; }
   .pro-card-glow:hover { transform: none; }
 }
+
+/* Start screen: trail drawn across the screen after picking a season */
+.flow-chooser { --flow-green: oklch(0.62 0.17 145); --flow-blue: oklch(0.55 0.16 250); }
+.trail-bike { --trail: var(--flow-green); }
+.trail-ski { --trail: var(--flow-blue); }
+.trail-line, .trail-glow {
+  fill: none; stroke: var(--trail); stroke-linecap: round;
+  stroke-dasharray: 2400; stroke-dashoffset: 2400;
+  animation: trail-draw 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.trail-line { stroke-width: 10; }
+.trail-glow { stroke-width: 42; opacity: 0.35; filter: blur(14px); }
+.trail-fill { background: var(--trail); opacity: 0; animation: trail-fill 0.5s ease-in 1s forwards; }
+@keyframes trail-draw { to { stroke-dashoffset: 0; } }
+@keyframes trail-fill { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .trail-line, .trail-glow { animation-duration: 0.01s; }
+}
