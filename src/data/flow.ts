@@ -1,6 +1,10 @@
 export const contact = {
   phone: "794 978 787\n664 993 492",
   phoneHref: "tel:+48794978787",
+  phones: [
+    { label: "794 978 787", href: "tel:+48794978787" },
+    { label: "664 993 492", href: "tel:+48664993492" },
+  ],
   email: "kontakt@flowserwis.pl",
   www: "flowserwis.pl",
   address: "ul. Krakowska 50, 32-083 Szczyglice",
