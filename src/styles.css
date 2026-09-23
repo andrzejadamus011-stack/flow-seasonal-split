@@ -217,3 +217,54 @@ h1, h2, h3, .display {
 }
 
 .logo-float { animation: logo-float 5.5s ease-in-out infinite; }
+
+/* ---------- FLOW bike: sportowe retro ---------- */
+.bike-retro {
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans: "Fira Sans", system-ui, sans-serif;
+  --bike: oklch(0.38 0.085 156);
+  --bike-soft: oklch(0.94 0.035 95);
+  --ink: oklch(0.29 0.025 155);
+  --ink-muted: oklch(0.48 0.025 115);
+  --hairline: oklch(0.76 0.045 90);
+  --surface: oklch(0.965 0.025 92);
+  --retro-gold: oklch(0.72 0.13 85);
+  font-family: var(--font-sans);
+  background-color: var(--surface);
+}
+
+.bike-retro h1,
+.bike-retro h2,
+.bike-retro h3,
+.bike-retro .display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.bike-retro .eyebrow {
+  letter-spacing: 0.16em;
+}
+
+@utility retro-gold-bg { background-color: var(--retro-gold); }
+@utility retro-gold-text { color: var(--retro-gold); }
+@utility retro-gold-border { border-color: var(--retro-gold); }
+
+.retro-paper {
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--ink) 3%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--ink) 2%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.retro-frame {
+  box-shadow:
+    7px 7px 0 var(--ink),
+    inset 0 0 0 4px var(--surface),
+    inset 0 0 0 6px var(--retro-gold);
+}
+
+.retro-card {
+  box-shadow: 4px 4px 0 color-mix(in oklab, var(--ink) 16%, transparent);
+}

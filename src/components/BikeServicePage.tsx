@@ -157,30 +157,31 @@ export function BikeServicePage() {
   };
 
   return (
-    <div className="theme-bike min-h-screen scroll-smooth bg-white text-ink">
-      <header className="sticky top-0 z-30 border-b border-hairline bg-white/90 backdrop-blur">
-        <nav className="mx-auto flex min-h-18 max-w-6xl items-center justify-between gap-5 px-6 py-2.5 md:min-h-24 md:py-3">
+    <div className="bike-retro theme-bike min-h-screen scroll-smooth bg-surface text-ink">
+      <header className="sticky top-0 z-30 border-b-2 border-ink bg-surface/95 backdrop-blur">
+        <div className="h-1.5 brand-bg" />
+        <nav className="mx-auto flex min-h-22 max-w-6xl items-center justify-between gap-5 px-6 py-2 md:min-h-30 md:py-3">
           <Link to="/" aria-label="FLOW – strona główna" className="shrink-0">
             <img
               src={logo}
               alt="FLOW"
               width={1389}
               height={784}
-              className="h-11 w-auto md:h-14"
+              className="h-16 w-auto drop-shadow-sm md:h-24"
             />
           </Link>
 
-          <div className="hidden items-center gap-6 text-[13px] lg:flex">
+          <div className="hidden items-center gap-7 text-[13px] font-semibold uppercase lg:flex">
             {navigation.map((item) =>
               "cta" in item && item.cta ? (
-                <Button key={item.href} asChild className="brand-bg rounded-full text-white hover:opacity-90">
+                <Button key={item.href} asChild className="brand-bg rounded-sm border border-ink px-5 text-primary-foreground shadow-[3px_3px_0_var(--ink)] hover:opacity-90">
                   <a href={item.href}>{item.label}</a>
                 </Button>
               ) : (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-ink-muted transition hover:text-ink"
+                  className="border-b border-transparent py-2 text-ink-muted transition hover:border-bike hover:text-ink"
                 >
                   {item.label}
                 </a>
@@ -192,7 +193,7 @@ export function BikeServicePage() {
             type="button"
             variant="outline"
             size="icon"
-            className="rounded-full lg:hidden"
+            className="rounded-sm border-ink bg-surface lg:hidden"
             aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
@@ -202,7 +203,7 @@ export function BikeServicePage() {
         </nav>
 
         {menuOpen && (
-          <div className="border-t border-hairline bg-white px-6 py-4 lg:hidden">
+          <div className="border-t border-ink bg-surface px-6 py-4 lg:hidden">
             <div className="mx-auto flex max-w-6xl flex-col gap-1">
               {navigation.map((item) => (
                 <a
@@ -211,8 +212,8 @@ export function BikeServicePage() {
                   onClick={() => setMenuOpen(false)}
                   className={
                     "cta" in item && item.cta
-                      ? "brand-bg mt-2 rounded-md px-4 py-3 text-center text-sm font-medium text-white"
-                      : "rounded-md px-3 py-3 text-sm text-ink-muted transition hover:bg-surface hover:text-ink"
+                      ? "brand-bg mt-2 rounded-sm border border-ink px-4 py-3 text-center text-sm font-semibold uppercase text-primary-foreground"
+                      : "border-b border-hairline px-3 py-3 text-sm font-semibold uppercase text-ink-muted transition hover:text-ink"
                   }
                 >
                   {item.label}
@@ -223,19 +224,20 @@ export function BikeServicePage() {
         )}
       </header>
 
-      <section className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-2 md:items-center md:py-20">
+      <section className="retro-paper border-b border-hairline">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-14 md:grid-cols-2 md:items-center md:py-20">
         <div className="flow-in">
-          <p className="eyebrow brand-text">Sezon letni</p>
-          <h1 className="mt-4 text-4xl leading-[1.05] sm:text-5xl">Profesjonalny serwis Twojego roweru</h1>
+          <p className="eyebrow brand-text flex items-center gap-3 before:h-px before:w-10 before:bg-bike">Sezon letni</p>
+          <h1 className="mt-4 text-5xl leading-[1.05] sm:text-6xl">Profesjonalny serwis Twojego roweru</h1>
           <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-ink-muted">
             Regulacja, naprawa i przygotowanie roweru do sezonu. Pracujemy dokładnie, bez pośpiechu
             i z pasją do jazdy — od miejskich jednośladów po zaawansowane MTB i e-bike.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild className="brand-bg h-auto rounded-full px-6 py-3 text-white hover:opacity-90">
+            <Button asChild className="brand-bg h-auto rounded-sm border border-ink px-6 py-3 text-primary-foreground shadow-[4px_4px_0_var(--ink)] hover:opacity-90">
               <a href="#zlec-serwis">Zleć serwis</a>
             </Button>
-            <Button asChild variant="outline" className="h-auto rounded-full px-6 py-3">
+            <Button asChild variant="outline" className="h-auto rounded-sm border-ink bg-surface px-6 py-3 shadow-[4px_4px_0_var(--retro-gold)]">
               <a href="#cennik">Zobacz cennik</a>
             </Button>
           </div>
@@ -250,7 +252,7 @@ export function BikeServicePage() {
             )}
           </dl>
         </div>
-        <div className="flow-in overflow-hidden rounded-2xl border border-hairline">
+        <div className="retro-frame flow-in overflow-hidden border-2 border-ink bg-surface p-2">
           <img
             src={heroBike}
             alt="Serwis rowerowy FLOW"
@@ -259,12 +261,13 @@ export function BikeServicePage() {
             className="aspect-[4/3] w-full object-cover"
           />
         </div>
+        </div>
       </section>
 
-      <section id="o-nas" className="scroll-mt-24 border-y border-hairline bg-surface">
+      <section id="o-nas" className="scroll-mt-32 border-y-2 border-ink brand-bg text-primary-foreground">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 py-14 md:grid-cols-[0.8fr_1.2fr] md:py-18">
-          <h2 className="text-2xl sm:text-3xl">O nas</h2>
-          <div className="space-y-4 text-[15px] leading-relaxed text-ink-muted">
+          <h2 className="text-3xl sm:text-4xl">O nas</h2>
+          <div className="space-y-4 text-[15px] leading-relaxed text-primary-foreground/80">
             <p>
               FLOW to warsztat prowadzony przez ludzi, którzy sami jeżdżą — zimą na nartach, latem
               na rowerze. Każdy sprzęt traktujemy tak, jakby był nasz: dokładnie, bez pośpiechu i z
@@ -278,17 +281,17 @@ export function BikeServicePage() {
         </div>
       </section>
 
-      <section id="uslugi" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-14 md:py-18">
-        <p className="eyebrow">Usługi</p>
-        <h2 className="mt-3 text-2xl sm:text-3xl">Zakres usług</h2>
+      <section id="uslugi" className="retro-paper mx-auto max-w-6xl scroll-mt-32 px-6 py-14 md:py-18">
+        <p className="eyebrow brand-text">Usługi</p>
+        <h2 className="mt-3 text-3xl sm:text-4xl">Zakres usług</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map(({ number, title, description, Icon }) => (
-            <article key={number} className="rounded-lg border border-hairline bg-white p-6">
+            <article key={number} className="retro-card border-2 border-ink bg-surface p-6 transition-transform hover:-translate-y-1">
               <div className="flex items-center justify-between">
-                <span className="brand-soft brand-text flex size-11 items-center justify-center rounded-md">
+                <span className="brand-bg flex size-11 items-center justify-center rounded-full border border-ink text-primary-foreground">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
-                <span className="display text-sm text-ink-muted">{number}</span>
+                <span className="display retro-gold-text text-xl">{number}</span>
               </div>
               <h3 className="mt-6 text-lg">{title}</h3>
               <p className="mt-3 text-[14px] leading-relaxed text-ink-muted">{description}</p>
@@ -297,11 +300,11 @@ export function BikeServicePage() {
         </div>
       </section>
 
-      <section id="cennik" className="scroll-mt-24 border-t border-hairline bg-surface">
+      <section id="cennik" className="scroll-mt-32 border-y-2 border-ink bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-14 md:py-18">
           <p className="eyebrow">Cennik</p>
-          <h2 className="mt-3 text-2xl sm:text-3xl">Cennik</h2>
-          <Accordion type="multiple" defaultValue={["Koła"]} className="mt-10 border-t border-hairline">
+          <h2 className="mt-3 text-3xl sm:text-4xl">Cennik</h2>
+          <Accordion type="multiple" defaultValue={["Koła"]} className="mt-10 border-t-2 border-ink">
             {priceGroups.map((group) => (
               <AccordionItem key={group.title} value={group.title} className="border-hairline">
                 <AccordionTrigger className="py-5 text-base hover:no-underline">
@@ -327,15 +330,15 @@ export function BikeServicePage() {
         </div>
       </section>
 
-      <section id="zlec-serwis" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-14 md:py-18">
+      <section id="zlec-serwis" className="retro-paper mx-auto max-w-6xl scroll-mt-32 px-6 py-14 md:py-18">
         <div className="grid gap-12 lg:grid-cols-[1.25fr_0.75fr]">
           <div>
             <p className="eyebrow">Zleć serwis</p>
-            <h2 className="mt-3 text-2xl sm:text-3xl">Opowiedz nam o swoim rowerze</h2>
+             <h2 className="mt-3 text-3xl sm:text-4xl">Opowiedz nam o swoim rowerze</h2>
             <form onSubmit={submitRequest} className="mt-8 grid gap-5 sm:grid-cols-2">
               <label className="grid gap-2 text-sm font-medium">
                 Imię
-                <Input name="name" required maxLength={80} autoComplete="name" className="h-11 bg-white" />
+                 <Input name="name" required maxLength={80} autoComplete="name" className="h-11 rounded-sm border-ink bg-surface" />
               </label>
               <label className="grid gap-2 text-sm font-medium">
                 Telefon
@@ -345,7 +348,7 @@ export function BikeServicePage() {
                   required
                   maxLength={30}
                   autoComplete="tel"
-                  className="h-11 bg-white"
+                   className="h-11 rounded-sm border-ink bg-surface"
                 />
               </label>
               <label className="grid gap-2 text-sm font-medium">
@@ -354,7 +357,7 @@ export function BikeServicePage() {
                   name="bikeType"
                   required
                   defaultValue=""
-                  className="h-11 w-full rounded-md border border-input bg-white px-3 text-sm outline-none focus:ring-1 focus:ring-ring"
+                   className="h-11 w-full rounded-sm border border-ink bg-surface px-3 text-sm outline-none focus:ring-1 focus:ring-ring"
                 >
                   <option value="" disabled>Wybierz typ roweru</option>
                   {['MTB', 'enduro', 'gravel', 'szosa', 'e-bike', 'miejski', 'inny'].map((type) => (
@@ -364,20 +367,20 @@ export function BikeServicePage() {
               </label>
               <label className="grid gap-2 text-sm font-medium">
                 Preferowany termin
-                <Input name="preferredDate" type="date" required className="h-11 bg-white" />
+                 <Input name="preferredDate" type="date" required className="h-11 rounded-sm border-ink bg-surface" />
               </label>
               <label className="grid gap-2 text-sm font-medium sm:col-span-2">
                 Opis usterki / zakres usługi
-                <Textarea name="description" required maxLength={1200} rows={6} className="bg-white" />
+                 <Textarea name="description" required maxLength={1200} rows={6} className="rounded-sm border-ink bg-surface" />
               </label>
-              <Button type="submit" className="brand-bg h-11 rounded-full px-6 text-white hover:opacity-90 sm:w-fit">
+               <Button type="submit" className="brand-bg h-11 rounded-sm border border-ink px-6 text-primary-foreground shadow-[4px_4px_0_var(--ink)] hover:opacity-90 sm:w-fit">
                 Wyślij zgłoszenie
                 <ChevronRight aria-hidden="true" />
               </Button>
             </form>
           </div>
 
-          <aside className="border-l-2 brand-border pl-7 lg:mt-20">
+          <aside className="border-l-4 retro-gold-border pl-7 lg:mt-20">
             <p className="eyebrow">Wolisz porozmawiać?</p>
             <p className="mt-4 text-[14px] leading-relaxed text-ink-muted">
               Zadzwoń i ustal zakres prac oraz dogodny termin bezpośrednio z serwisem.
@@ -390,12 +393,12 @@ export function BikeServicePage() {
         </div>
       </section>
 
-      <section id="kontakt" className="scroll-mt-24 border-t border-hairline bg-surface">
+      <section id="kontakt" className="scroll-mt-32 border-t-2 border-ink bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-14 md:py-18">
           <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:items-end">
             <div>
               <p className="eyebrow">Kontakt</p>
-              <h2 className="mt-3 text-2xl sm:text-3xl">Znajdziesz nas w Szczyglicach</h2>
+               <h2 className="mt-3 text-3xl sm:text-4xl">Znajdziesz nas w Szczyglicach</h2>
             </div>
             <div className="grid gap-6 sm:grid-cols-3">
               <div>
@@ -418,7 +421,7 @@ export function BikeServicePage() {
             </div>
           </div>
           <div className="mt-8 flex justify-end">
-            <Button asChild variant="outline" className="rounded-full bg-white">
+             <Button asChild variant="outline" className="rounded-sm border-ink bg-surface shadow-[3px_3px_0_var(--retro-gold)]">
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=ul.+Krakowska+50,+Szczyglice"
                 target="_blank"
@@ -429,7 +432,7 @@ export function BikeServicePage() {
               </a>
             </Button>
           </div>
-          <div className="mt-5 overflow-hidden rounded-2xl border border-hairline">
+           <div className="retro-frame mt-5 overflow-hidden border-2 border-ink bg-surface p-2">
             <iframe
               title="Mapa – FLOW Szczyglice"
               src="https://www.google.com/maps?q=ul.+Krakowska+50,+Szczyglice&output=embed"
@@ -440,9 +443,9 @@ export function BikeServicePage() {
         </div>
       </section>
 
-      <footer className="border-t border-hairline">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-[13px] text-ink-muted sm:flex-row">
-          <img src={logo} alt="FLOW" width={1389} height={784} className="h-9 w-auto" loading="lazy" />
+      <footer className="border-t-2 border-ink bg-ink text-primary-foreground">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-[13px] text-primary-foreground/70 sm:flex-row">
+          <img src={logo} alt="FLOW" width={1389} height={784} className="h-12 w-auto" loading="lazy" />
           <p>FLOW · {contact.www} · {contact.phone}</p>
         </div>
       </footer>
