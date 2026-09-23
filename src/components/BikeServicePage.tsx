@@ -36,9 +36,9 @@ const navigation = [
 const services = [
   {
     number: "01",
-    title: "Przeglądy i regulacje",
+    title: "OKLEJANIE FOLIĄ PPF",
     description:
-      "Przeglądy rowerów MTB, enduro, gravel, szosowych i elektrycznych. Sprawdzamy każdy element, regulujemy i oddajemy rower gotowy do bezpiecznej jazdy.",
+      "Przezroczysta folia chroni ramę przed odpryskami, rysami i przetarciami. Jest niewidoczna, drobne rysy same się na niej wygładzają, a przy sprzedaży roweru zdejmiesz ją bez śladu. Oklejamy całą ramę albo tylko najbardziej narażone miejsca.",
     Icon: Bike,
   },
   {
