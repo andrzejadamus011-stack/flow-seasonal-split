@@ -37,6 +37,7 @@ const services = [
   {
     number: "01",
     title: "OKLEJANIE FOLIĄ PPF",
+    price: "od 200 zł",
     description:
       "Przezroczysta folia chroni ramę przed odpryskami, rysami i przetarciami. Jest niewidoczna, drobne rysy same się na niej wygładzają, a przy sprzedaży roweru zdejmiesz ją bez śladu. Oklejamy całą ramę albo tylko najbardziej narażone miejsca.",
     Icon: Bike,
@@ -44,6 +45,7 @@ const services = [
   {
     number: "02",
     title: "Serwis amortyzacji",
+    price: "od 150 zł",
     description:
       "Serwis widelców, damperów i sztyc regulowanych — FOX, RockShox i inne marki. Wymiana olejów, uszczelek i przywrócenie płynnej pracy zawieszenia.",
     Icon: Gauge,
@@ -51,6 +53,7 @@ const services = [
   {
     number: "03",
     title: "Napęd i hamulce",
+    price: "od 50 zł",
     description:
       "Diagnostyka i naprawa napędu oraz hamulców mechanicznych i hydraulicznych. Cicha, precyzyjna zmiana biegów i pewne hamowanie.",
     Icon: Settings,
@@ -58,6 +61,7 @@ const services = [
   {
     number: "04",
     title: "Koła",
+    price: "od 50 zł",
     description:
       "Centrowanie, zaplatanie, serwis piast i montaż systemu tubeless. Koła, które kręcą się równo i bez luzów.",
     Icon: CircleDot,
@@ -65,12 +69,14 @@ const services = [
   {
     number: "05",
     title: "Części i montaż",
+    price: "od 20 zł",
     description: "Pomagamy dobrać komponenty do Twojego stylu jazdy, zamawiamy je i montujemy.",
     Icon: Wrench,
   },
   {
     number: "06",
     title: "Przygotowanie do sezonu",
+    price: "od 199 zł",
     description: "Kompleksowe przygotowanie roweru przed sezonem, zawodami lub wyjazdem.",
     Icon: CalendarDays,
   },
@@ -135,8 +141,39 @@ const priceGroups = [
   },
 ] as const;
 
+const packages = [
+  {
+    name: "Regulacyjny",
+    price: "od 199 PLN",
+    items: ["Centrowanie kół", "Regulacja hamulców", "Regulacja przerzutek", "Kasowanie luzów", "Sprawdzenie całego roweru"],
+  },
+  {
+    name: "Kompleksowy",
+    price: "od 349 PLN",
+    items: ["Centrowanie kół", "Regulacja hamulców", "Regulacja przerzutek", "Kasowanie luzów", "Wymiana pancerzy i linek", "Smarowanie łożysk suportu, sterów i piast", "Wymiana zużytych komponentów w cenie"],
+  },
+  {
+    name: "Kompleksowy plus",
+    price: "od 500 PLN",
+    items: ["Centrowanie kół", "Regulacja hamulców", "Regulacja przerzutek", "Kasowanie luzów", "Wymiana pancerzy i linek", "Smarowanie łożysk suportu, sterów i piast", "Przelewanie hamulców hydraulicznych", "Wymiana zużytych komponentów w cenie"],
+  },
+  {
+    name: "Full suspension",
+    price: "od 700 PLN",
+    items: ["Wycena indywidualna"],
+  },
+] as const;
+
 export function BikeServicePage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [serviceText, setServiceText] = useState("");
+
+  const pickService = (label: string) => {
+    setServiceText(`Usługa: ${label}\n\n`);
+    document.getElementById("zlec-serwis")?.scrollIntoView({ behavior: "smooth" });
+    window.setTimeout(() => document.getElementById("service-description")?.focus({ preventScroll: true }), 600);
+  };
+
 
   const submitRequest = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -285,18 +322,59 @@ export function BikeServicePage() {
         <p className="eyebrow brand-text">Usługi</p>
         <h2 className="mt-3 text-3xl sm:text-4xl">Zakres usług</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map(({ number, title, description, Icon }) => (
-            <article key={number} className="pro-card-glow group border border-pro-line bg-pro-panel p-6">
-              <div className="flex items-center justify-between">
+          {services.map(({ number, title, description, price, Icon }) => (
+            <button
+              type="button"
+              key={number}
+              onClick={() => pickService(`${title} (${price})`)}
+              className="pro-card-glow group flex flex-col border border-pro-line bg-pro-panel p-6 text-left"
+            >
+              <div className="flex w-full items-center justify-between">
                 <span className="flex size-11 items-center justify-center rounded-sm border border-pro-line bg-pro-raised text-pro-accent transition group-hover:border-pro-accent group-hover:bg-pro-accent group-hover:text-primary-foreground">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
                 <span className="display text-xl text-pro-accent">{number}</span>
               </div>
               <h3 className="mt-6 text-lg">{title}</h3>
-               <p className="mt-3 text-[14px] leading-relaxed text-pro-muted">{description}</p>
-            </article>
+              <p className="mt-3 flex-1 text-[14px] leading-relaxed text-pro-muted">{description}</p>
+              <div className="mt-5 flex w-full items-center justify-between border-t border-pro-line pt-4">
+                <span className="display text-xl text-pro-accent">{price}</span>
+                <span className="flex items-center gap-1 text-sm text-pro-muted transition group-hover:text-pro-accent">
+                  Zleć <ChevronRight className="size-4" aria-hidden="true" />
+                </span>
+              </div>
+            </button>
           ))}
+        </div>
+
+        <div className="mt-16">
+          <p className="eyebrow brand-text">Przeglądy</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">Pakiety przeglądów</h2>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {packages.map((pkg) => (
+              <button
+                type="button"
+                key={pkg.name}
+                onClick={() => pickService(`Przegląd: ${pkg.name} (${pkg.price})`)}
+                className="pro-card-glow group flex flex-col border border-pro-line bg-pro-panel p-6 text-left"
+              >
+                <h3 className="text-xl">{pkg.name}</h3>
+                <p className="display mt-2 text-3xl text-pro-accent">{pkg.price}</p>
+                <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-pro-muted">Zawiera</p>
+                <ul className="mt-3 flex-1 space-y-2 text-[14px] text-pro-text">
+                  {pkg.items.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-pro-accent" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <span className="mt-6 flex h-11 w-full items-center justify-center gap-1 rounded-sm border border-pro-accent text-sm font-semibold text-pro-accent transition group-hover:bg-pro-accent group-hover:text-primary-foreground">
+                  Wybierz pakiet <ChevronRight className="size-4" aria-hidden="true" />
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -371,7 +449,7 @@ export function BikeServicePage() {
               </label>
               <label className="grid gap-2 text-sm font-medium sm:col-span-2">
                 Opis usterki / zakres usługi
-                 <Textarea name="description" required maxLength={1200} rows={6} className="rounded-sm border-pro-line bg-pro-panel text-pro-text focus-visible:ring-pro-accent" />
+                 <Textarea id="service-description" name="description" required maxLength={1200} rows={6} value={serviceText} onChange={(e) => setServiceText(e.target.value)} className="rounded-sm border-pro-line bg-pro-panel text-pro-text focus-visible:ring-pro-accent" />
               </label>
                <Button type="submit" className="brand-bg h-11 rounded-sm border border-pro-accent px-6 text-primary-foreground shadow-none hover:brightness-110 sm:w-fit">
                 Wyślij zgłoszenie
