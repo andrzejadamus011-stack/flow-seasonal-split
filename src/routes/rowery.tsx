@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ServicePage } from "@/components/ServicePage";
-import heroBike from "@/assets/hero-bike.jpg";
-import { bike } from "@/data/flow";
+import { BikeServicePage } from "@/components/BikeServicePage";
 
 export const Route = createFileRoute("/rowery")({
   head: () => ({
@@ -21,18 +19,5 @@ export const Route = createFileRoute("/rowery")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: () => (
-    <ServicePage
-      theme="bike"
-      hero={heroBike}
-      name={bike.name}
-      tagline={bike.tagline}
-      lead={bike.lead}
-      values={bike.values}
-      sections={bike.sections}
-      prices={bike.prices}
-      otherLabel="Serwis narciarski"
-      otherHref="/narty"
-    />
-  ),
+  component: BikeServicePage,
 });
