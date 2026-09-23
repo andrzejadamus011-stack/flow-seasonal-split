@@ -172,7 +172,7 @@ export function BikeServicePage() {
 
           <div className="hidden items-center gap-6 text-[13px] lg:flex">
             {navigation.map((item) =>
-              item.cta ? (
+              "cta" in item && item.cta ? (
                 <Button key={item.href} asChild className="brand-bg rounded-full text-white hover:opacity-90">
                   <a href={item.href}>{item.label}</a>
                 </Button>
@@ -210,7 +210,7 @@ export function BikeServicePage() {
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
                   className={
-                    item.cta
+                    "cta" in item && item.cta
                       ? "brand-bg mt-2 rounded-md px-4 py-3 text-center text-sm font-medium text-white"
                       : "rounded-md px-3 py-3 text-sm text-ink-muted transition hover:bg-surface hover:text-ink"
                   }
