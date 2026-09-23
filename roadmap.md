@@ -7,4 +7,6 @@
 - [x] Uporządkować kontakt, mapę i link do wyznaczania trasy.
 - [x] Zweryfikować stronę na desktopie i mobile oraz sprawdzić stan podglądu.
 - [x] Powiększyć logo i nadać stronie rowerowej estetykę sportowego retro bez zmiany treści.
-- [x] Zweryfikować odświeżony wygląd na desktopie i mobile.
+- [x] Zweryfikować odświeżony wygląd na desktopie i mobile.- [ ] Przeprojektować stronę rowerową na profesjonalny ciemny styl inspirowany branżą MTB.
+- [ ] Przygotować nowe, mocne zdjęcie główne i interakcje po najechaniu.
+- [ ] Zweryfikować cały widok na desktopie i mobile.
