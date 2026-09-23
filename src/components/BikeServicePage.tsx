@@ -532,7 +532,7 @@ export function BikeServicePage() {
       <footer className="border-t border-pro-line bg-pro-bg text-pro-text">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-[13px] text-pro-muted sm:flex-row">
           <img src={logo} alt="FLOW" width={1389} height={784} className="h-12 w-auto" loading="lazy" />
-          <p>FLOW · {contact.www} · {contact.phone}</p>
+          <p>FLOW · {contact.www} · {contact.phones.map((p) => p.label).join(" · ")}</p>
         </div>
       </footer>
     </div>
