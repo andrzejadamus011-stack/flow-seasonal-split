@@ -8,3 +8,6 @@
 - [x] Zweryfikować stronę na desktopie i mobile oraz sprawdzić stan podglądu.
 - [x] Powiększyć logo i nadać stronie rowerowej estetykę sportowego retro bez zmiany treści.
 - [x] Zweryfikować odświeżony wygląd na desktopie i mobile.
+- [x] Przeprojektować stronę rowerową na profesjonalny ciemny styl inspirowany branżą MTB.
+- [x] Przygotować nowe, mocne zdjęcie główne i interakcje po najechaniu.
+- [x] Zweryfikować cały widok na desktopie i mobile.

@@ -155,6 +155,13 @@
   --color-ink-muted: var(--ink-muted);
   --color-hairline: var(--hairline);
   --color-surface: var(--surface);
+  --color-pro-bg: var(--pro-bg);
+  --color-pro-panel: var(--pro-panel);
+  --color-pro-raised: var(--pro-raised);
+  --color-pro-line: var(--pro-line);
+  --color-pro-text: var(--pro-text);
+  --color-pro-muted: var(--pro-muted);
+  --color-pro-accent: var(--pro-accent);
 }
 
 :root {
@@ -267,4 +274,64 @@ h1, h2, h3, .display {
 
 .retro-card {
   box-shadow: 4px 4px 0 color-mix(in oklab, var(--ink) 16%, transparent);
+}
+
+/* ---------- FLOW bike: professional workshop ---------- */
+.bike-pro {
+  --font-display: "Barlow Condensed", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --brand: var(--pro-accent);
+  --bike: var(--pro-accent);
+  --bike-soft: oklch(0.27 0.06 155);
+  --ink: var(--pro-text);
+  --ink-muted: var(--pro-muted);
+  --hairline: var(--pro-line);
+  --surface: var(--pro-panel);
+  --pro-bg: oklch(0.115 0.012 155);
+  --pro-panel: oklch(0.16 0.014 155);
+  --pro-raised: oklch(0.205 0.017 155);
+  --pro-line: oklch(0.32 0.025 155);
+  --pro-text: oklch(0.97 0.008 145);
+  --pro-muted: oklch(0.72 0.018 145);
+  --pro-accent: oklch(0.69 0.17 151);
+  font-family: var(--font-sans);
+  background-color: var(--pro-bg);
+  color: var(--pro-text);
+}
+
+.bike-pro h1,
+.bike-pro h2,
+.bike-pro h3,
+.bike-pro .display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.bike-pro .eyebrow {
+  color: var(--pro-accent);
+  letter-spacing: 0.16em;
+}
+
+.pro-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--pro-line) 42%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--pro-line) 42%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.pro-card-glow {
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.pro-card-glow:hover {
+  transform: translateY(-5px);
+  border-color: var(--pro-accent);
+  box-shadow: 0 18px 44px color-mix(in oklab, var(--pro-accent) 13%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pro-card-glow { transition: none; }
+  .pro-card-glow:hover { transform: none; }
 }
