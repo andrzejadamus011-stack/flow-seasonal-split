@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import logo from "@/assets/flow-logo.png";
-import heroBike from "@/assets/hero-bike.jpg";
+import heroBike from "@/assets/hero-bike-pro.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -157,9 +157,9 @@ export function BikeServicePage() {
   };
 
   return (
-    <div className="bike-retro theme-bike min-h-screen scroll-smooth bg-surface text-ink">
-      <header className="sticky top-0 z-30 border-b-2 border-ink bg-surface/95 backdrop-blur">
-        <div className="h-1.5 brand-bg" />
+    <div className="bike-pro theme-bike min-h-screen scroll-smooth bg-pro-bg text-pro-text">
+      <header className="sticky top-0 z-30 border-b border-pro-line bg-pro-bg/95 backdrop-blur-xl">
+        <div className="h-1 brand-bg" />
         <nav className="mx-auto flex min-h-22 max-w-6xl items-center justify-between gap-5 px-6 py-2 md:min-h-30 md:py-3">
           <Link to="/" aria-label="FLOW – strona główna" className="shrink-0">
             <img
@@ -167,21 +167,21 @@ export function BikeServicePage() {
               alt="FLOW"
               width={1389}
               height={784}
-              className="h-16 w-auto drop-shadow-sm md:h-24"
+              className="h-16 w-auto drop-shadow-lg md:h-24"
             />
           </Link>
 
           <div className="hidden items-center gap-7 text-[13px] font-semibold uppercase lg:flex">
             {navigation.map((item) =>
               "cta" in item && item.cta ? (
-                <Button key={item.href} asChild className="brand-bg rounded-sm border border-ink px-5 text-primary-foreground shadow-[3px_3px_0_var(--ink)] hover:opacity-90">
+                <Button key={item.href} asChild className="brand-bg rounded-sm border border-pro-accent px-5 text-primary-foreground shadow-none hover:brightness-110">
                   <a href={item.href}>{item.label}</a>
                 </Button>
               ) : (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="border-b border-transparent py-2 text-ink-muted transition hover:border-bike hover:text-ink"
+                  className="border-b border-transparent py-2 text-pro-muted transition hover:border-pro-accent hover:text-pro-text"
                 >
                   {item.label}
                 </a>
@@ -193,7 +193,7 @@ export function BikeServicePage() {
             type="button"
             variant="outline"
             size="icon"
-            className="rounded-sm border-ink bg-surface lg:hidden"
+            className="rounded-sm border-pro-line bg-pro-panel text-pro-text lg:hidden"
             aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
@@ -203,7 +203,7 @@ export function BikeServicePage() {
         </nav>
 
         {menuOpen && (
-          <div className="border-t border-ink bg-surface px-6 py-4 lg:hidden">
+          <div className="border-t border-pro-line bg-pro-bg px-6 py-4 lg:hidden">
             <div className="mx-auto flex max-w-6xl flex-col gap-1">
               {navigation.map((item) => (
                 <a
@@ -212,8 +212,8 @@ export function BikeServicePage() {
                   onClick={() => setMenuOpen(false)}
                   className={
                     "cta" in item && item.cta
-                      ? "brand-bg mt-2 rounded-sm border border-ink px-4 py-3 text-center text-sm font-semibold uppercase text-primary-foreground"
-                      : "border-b border-hairline px-3 py-3 text-sm font-semibold uppercase text-ink-muted transition hover:text-ink"
+                      ? "brand-bg mt-2 rounded-sm border border-pro-accent px-4 py-3 text-center text-sm font-semibold uppercase text-primary-foreground"
+                      : "border-b border-pro-line px-3 py-3 text-sm font-semibold uppercase text-pro-muted transition hover:text-pro-text"
                   }
                 >
                   {item.label}
@@ -224,50 +224,50 @@ export function BikeServicePage() {
         )}
       </header>
 
-      <section className="retro-paper border-b border-hairline">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-14 md:grid-cols-2 md:items-center md:py-20">
-        <div className="flow-in">
+      <section className="relative min-h-[620px] overflow-hidden border-b border-pro-line md:min-h-[720px]">
+        <img
+          src={heroBike}
+          alt="Mechanik FLOW reguluje napęd roweru górskiego"
+          width={1600}
+          height={1100}
+          className="absolute inset-0 h-full w-full object-cover object-[62%_center] transition-transform duration-700 hover:scale-[1.025]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-pro-bg via-pro-bg/90 to-pro-bg/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-pro-bg/70 via-transparent to-transparent" />
+        <div className="relative mx-auto flex min-h-[620px] max-w-6xl items-center px-6 py-16 md:min-h-[720px]">
+        <div className="flow-in max-w-2xl">
           <p className="eyebrow brand-text flex items-center gap-3 before:h-px before:w-10 before:bg-bike">Sezon letni</p>
-          <h1 className="mt-4 text-5xl leading-[1.05] sm:text-6xl">Profesjonalny serwis Twojego roweru</h1>
-          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-ink-muted">
+          <h1 className="mt-5 max-w-xl text-6xl leading-[0.92] sm:text-7xl md:text-8xl">Profesjonalny serwis Twojego roweru</h1>
+          <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-pro-muted">
             Regulacja, naprawa i przygotowanie roweru do sezonu. Pracujemy dokładnie, bez pośpiechu
             i z pasją do jazdy — od miejskich jednośladów po zaawansowane MTB i e-bike.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild className="brand-bg h-auto rounded-sm border border-ink px-6 py-3 text-primary-foreground shadow-[4px_4px_0_var(--ink)] hover:opacity-90">
+            <Button asChild className="brand-bg h-auto rounded-sm border border-pro-accent px-6 py-3 text-primary-foreground shadow-none hover:brightness-110">
               <a href="#zlec-serwis">Zleć serwis</a>
             </Button>
-            <Button asChild variant="outline" className="h-auto rounded-sm border-ink bg-surface px-6 py-3 shadow-[4px_4px_0_var(--retro-gold)]">
+            <Button asChild variant="outline" className="h-auto rounded-sm border-pro-line bg-pro-bg/60 px-6 py-3 text-pro-text shadow-none hover:border-pro-accent hover:bg-pro-panel hover:text-pro-text">
               <a href="#cennik">Zobacz cennik</a>
             </Button>
           </div>
-          <dl className="mt-10 grid gap-x-8 gap-y-3 border-t border-hairline pt-6 sm:grid-cols-3">
+           <dl className="mt-10 grid gap-x-8 gap-y-3 border-t border-pro-line pt-6 sm:grid-cols-3">
             {["Doświadczenie i pasja", "Profesjonalny sprzęt", "Dokładność w każdym detalu"].map(
               (value) => (
-                <div key={value} className="border-t-2 brand-border pt-3">
+                 <div key={value} className="border-t-2 border-pro-accent pt-3">
                   <dt className="sr-only">Wyróżnik</dt>
-                  <dd className="text-[13px] leading-snug text-ink-muted">{value}</dd>
+                   <dd className="text-[13px] leading-snug text-pro-muted">{value}</dd>
                 </div>
               ),
             )}
           </dl>
         </div>
-        <div className="retro-frame flow-in overflow-hidden border-2 border-ink bg-surface p-2">
-          <img
-            src={heroBike}
-            alt="Serwis rowerowy FLOW"
-            width={1600}
-            height={1104}
-            className="aspect-[4/3] w-full object-cover"
-          />
-        </div>
         </div>
       </section>
 
-      <section id="o-nas" className="scroll-mt-32 border-y-2 border-ink brand-bg text-primary-foreground">
+      <section id="o-nas" className="scroll-mt-32 border-y border-pro-line bg-pro-panel text-pro-text">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 py-14 md:grid-cols-[0.8fr_1.2fr] md:py-18">
           <h2 className="text-3xl sm:text-4xl">O nas</h2>
-          <div className="space-y-4 text-[15px] leading-relaxed text-primary-foreground/80">
+          <div className="space-y-4 text-[15px] leading-relaxed text-pro-muted">
             <p>
               FLOW to warsztat prowadzony przez ludzi, którzy sami jeżdżą — zimą na nartach, latem
               na rowerze. Każdy sprzęt traktujemy tak, jakby był nasz: dokładnie, bez pośpiechu i z
@@ -281,32 +281,32 @@ export function BikeServicePage() {
         </div>
       </section>
 
-      <section id="uslugi" className="retro-paper mx-auto max-w-6xl scroll-mt-32 px-6 py-14 md:py-18">
+      <section id="uslugi" className="pro-grid mx-auto max-w-6xl scroll-mt-32 px-6 py-14 md:py-18">
         <p className="eyebrow brand-text">Usługi</p>
         <h2 className="mt-3 text-3xl sm:text-4xl">Zakres usług</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map(({ number, title, description, Icon }) => (
-            <article key={number} className="retro-card border-2 border-ink bg-surface p-6 transition-transform hover:-translate-y-1">
+            <article key={number} className="pro-card-glow group border border-pro-line bg-pro-panel p-6">
               <div className="flex items-center justify-between">
-                <span className="brand-bg flex size-11 items-center justify-center rounded-full border border-ink text-primary-foreground">
+                <span className="flex size-11 items-center justify-center rounded-sm border border-pro-line bg-pro-raised text-pro-accent transition group-hover:border-pro-accent group-hover:bg-pro-accent group-hover:text-primary-foreground">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
-                <span className="display retro-gold-text text-xl">{number}</span>
+                <span className="display text-xl text-pro-accent">{number}</span>
               </div>
               <h3 className="mt-6 text-lg">{title}</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-ink-muted">{description}</p>
+               <p className="mt-3 text-[14px] leading-relaxed text-pro-muted">{description}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="cennik" className="scroll-mt-32 border-y-2 border-ink bg-surface">
+      <section id="cennik" className="scroll-mt-32 border-y border-pro-line bg-pro-panel">
         <div className="mx-auto max-w-6xl px-6 py-14 md:py-18">
           <p className="eyebrow">Cennik</p>
           <h2 className="mt-3 text-3xl sm:text-4xl">Cennik</h2>
-          <Accordion type="multiple" defaultValue={["Koła"]} className="mt-10 border-t-2 border-ink">
+          <Accordion type="multiple" defaultValue={["Koła"]} className="mt-10 border-t border-pro-line">
             {priceGroups.map((group) => (
-              <AccordionItem key={group.title} value={group.title} className="border-hairline">
+              <AccordionItem key={group.title} value={group.title} className="border-pro-line">
                 <AccordionTrigger className="py-5 text-base hover:no-underline">
                   {group.title}
                 </AccordionTrigger>
@@ -314,7 +314,7 @@ export function BikeServicePage() {
                   <ul className="divide-y divide-hairline border-t border-hairline">
                     {group.rows.map(([name, price]) => (
                       <li key={name} className="flex items-baseline justify-between gap-6 py-3">
-                        <span className="text-[14px] text-ink-muted">{name}</span>
+                        <span className="text-[14px] text-pro-muted">{name}</span>
                         <span className="display shrink-0 text-right text-[15px]">{price}</span>
                       </li>
                     ))}
@@ -323,14 +323,14 @@ export function BikeServicePage() {
               </AccordionItem>
             ))}
           </Accordion>
-          <p className="mt-6 max-w-3xl text-[12px] leading-relaxed text-ink-muted">
+           <p className="mt-6 max-w-3xl text-[12px] leading-relaxed text-pro-muted">
             Ceny obejmują robociznę. Części i materiały doliczane są osobno. Dokładną wycenę
             podajemy po obejrzeniu roweru.
           </p>
         </div>
       </section>
 
-      <section id="zlec-serwis" className="retro-paper mx-auto max-w-6xl scroll-mt-32 px-6 py-14 md:py-18">
+      <section id="zlec-serwis" className="pro-grid mx-auto max-w-6xl scroll-mt-32 px-6 py-14 md:py-18">
         <div className="grid gap-12 lg:grid-cols-[1.25fr_0.75fr]">
           <div>
             <p className="eyebrow">Zleć serwis</p>
@@ -338,7 +338,7 @@ export function BikeServicePage() {
             <form onSubmit={submitRequest} className="mt-8 grid gap-5 sm:grid-cols-2">
               <label className="grid gap-2 text-sm font-medium">
                 Imię
-                 <Input name="name" required maxLength={80} autoComplete="name" className="h-11 rounded-sm border-ink bg-surface" />
+                 <Input name="name" required maxLength={80} autoComplete="name" className="h-11 rounded-sm border-pro-line bg-pro-panel text-pro-text focus-visible:ring-pro-accent" />
               </label>
               <label className="grid gap-2 text-sm font-medium">
                 Telefon
@@ -348,7 +348,7 @@ export function BikeServicePage() {
                   required
                   maxLength={30}
                   autoComplete="tel"
-                   className="h-11 rounded-sm border-ink bg-surface"
+                   className="h-11 rounded-sm border-pro-line bg-pro-panel text-pro-text focus-visible:ring-pro-accent"
                 />
               </label>
               <label className="grid gap-2 text-sm font-medium">
@@ -357,7 +357,7 @@ export function BikeServicePage() {
                   name="bikeType"
                   required
                   defaultValue=""
-                   className="h-11 w-full rounded-sm border border-ink bg-surface px-3 text-sm outline-none focus:ring-1 focus:ring-ring"
+                   className="h-11 w-full rounded-sm border border-pro-line bg-pro-panel px-3 text-sm text-pro-text outline-none focus:ring-1 focus:ring-pro-accent"
                 >
                   <option value="" disabled>Wybierz typ roweru</option>
                   {['MTB', 'enduro', 'gravel', 'szosa', 'e-bike', 'miejski', 'inny'].map((type) => (
@@ -367,22 +367,22 @@ export function BikeServicePage() {
               </label>
               <label className="grid gap-2 text-sm font-medium">
                 Preferowany termin
-                 <Input name="preferredDate" type="date" required className="h-11 rounded-sm border-ink bg-surface" />
+                 <Input name="preferredDate" type="date" required className="h-11 rounded-sm border-pro-line bg-pro-panel text-pro-text focus-visible:ring-pro-accent" />
               </label>
               <label className="grid gap-2 text-sm font-medium sm:col-span-2">
                 Opis usterki / zakres usługi
-                 <Textarea name="description" required maxLength={1200} rows={6} className="rounded-sm border-ink bg-surface" />
+                 <Textarea name="description" required maxLength={1200} rows={6} className="rounded-sm border-pro-line bg-pro-panel text-pro-text focus-visible:ring-pro-accent" />
               </label>
-               <Button type="submit" className="brand-bg h-11 rounded-sm border border-ink px-6 text-primary-foreground shadow-[4px_4px_0_var(--ink)] hover:opacity-90 sm:w-fit">
+               <Button type="submit" className="brand-bg h-11 rounded-sm border border-pro-accent px-6 text-primary-foreground shadow-none hover:brightness-110 sm:w-fit">
                 Wyślij zgłoszenie
                 <ChevronRight aria-hidden="true" />
               </Button>
             </form>
           </div>
 
-          <aside className="border-l-4 retro-gold-border pl-7 lg:mt-20">
+          <aside className="border-l-4 border-pro-accent pl-7 lg:mt-20">
             <p className="eyebrow">Wolisz porozmawiać?</p>
-            <p className="mt-4 text-[14px] leading-relaxed text-ink-muted">
+             <p className="mt-4 text-[14px] leading-relaxed text-pro-muted">
               Zadzwoń i ustal zakres prac oraz dogodny termin bezpośrednio z serwisem.
             </p>
             <a href={contact.phoneHref} className="brand-text mt-6 inline-flex items-center gap-3 text-2xl font-bold">
@@ -393,7 +393,7 @@ export function BikeServicePage() {
         </div>
       </section>
 
-      <section id="kontakt" className="scroll-mt-32 border-t-2 border-ink bg-surface">
+      <section id="kontakt" className="scroll-mt-32 border-t border-pro-line bg-pro-panel">
         <div className="mx-auto max-w-6xl px-6 py-14 md:py-18">
           <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:items-end">
             <div>
@@ -403,7 +403,7 @@ export function BikeServicePage() {
             <div className="grid gap-6 sm:grid-cols-3">
               <div>
                 <p className="eyebrow">Adres</p>
-                <p className="mt-2 text-[14px] text-ink-muted">{contact.address}</p>
+                 <p className="mt-2 text-[14px] text-pro-muted">{contact.address}</p>
               </div>
               <div>
                 <p className="eyebrow">Telefon</p>
@@ -413,7 +413,7 @@ export function BikeServicePage() {
               </div>
               <div>
                 <p className="eyebrow">Godziny</p>
-                <p className="mt-2 text-[14px] text-ink-muted">
+                 <p className="mt-2 text-[14px] text-pro-muted">
                   {contact.hours}
                   <span className="mt-1 block text-[12px]">{contact.hoursNote}</span>
                 </p>
@@ -421,7 +421,7 @@ export function BikeServicePage() {
             </div>
           </div>
           <div className="mt-8 flex justify-end">
-             <Button asChild variant="outline" className="rounded-sm border-ink bg-surface shadow-[3px_3px_0_var(--retro-gold)]">
+             <Button asChild variant="outline" className="rounded-sm border-pro-line bg-pro-raised text-pro-text shadow-none hover:border-pro-accent hover:bg-pro-accent hover:text-primary-foreground">
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=ul.+Krakowska+50,+Szczyglice"
                 target="_blank"
@@ -432,7 +432,7 @@ export function BikeServicePage() {
               </a>
             </Button>
           </div>
-           <div className="retro-frame mt-5 overflow-hidden border-2 border-ink bg-surface p-2">
+           <div className="mt-5 overflow-hidden rounded-sm border border-pro-line bg-pro-bg p-1 transition hover:border-pro-accent">
             <iframe
               title="Mapa – FLOW Szczyglice"
               src="https://www.google.com/maps?q=ul.+Krakowska+50,+Szczyglice&output=embed"
@@ -443,8 +443,8 @@ export function BikeServicePage() {
         </div>
       </section>
 
-      <footer className="border-t-2 border-ink bg-ink text-primary-foreground">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-[13px] text-primary-foreground/70 sm:flex-row">
+      <footer className="border-t border-pro-line bg-pro-bg text-pro-text">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-[13px] text-pro-muted sm:flex-row">
           <img src={logo} alt="FLOW" width={1389} height={784} className="h-12 w-auto" loading="lazy" />
           <p>FLOW · {contact.www} · {contact.phone}</p>
         </div>
