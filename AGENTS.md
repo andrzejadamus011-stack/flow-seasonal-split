@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep `deploy/` (static HTML/CSS/vanilla JS for shared hosting) in sync after every site change: run scripts/static-export capture.py, capture2.py, build.py (script.js is hand-written). Why: user hosts on standard FTP hosting without Node.
