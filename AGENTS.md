@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep `deploy/` (static HTML/CSS/vanilla JS for shared hosting) in sync after every site change: run scripts/static-export capture.py, capture2.py, build.py (script.js is hand-written). Why: user hosts on standard FTP hosting without Node.
+- Share social links through a reusable component and contact data through the central contact object so every service page stays consistent.
