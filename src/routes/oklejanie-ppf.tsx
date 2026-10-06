@@ -15,10 +15,9 @@ import {
   Paintbrush,
   Layers,
 } from "lucide-react";
-import { useState } from "react";
 import heroPpf from "@/assets/hero-ppf.jpg";
 import { Button } from "@/components/ui/button";
-import { BikeFooter, BikeHeader, ContactMapSection, ServiceRequestSection } from "@/components/BikeChrome";
+import { BikeFooter, BikeHeader, ContactMapSection } from "@/components/BikeChrome";
 
 export const Route = createFileRoute("/oklejanie-ppf")({
   head: () => ({
@@ -76,14 +75,6 @@ const steps = [
 ] as const;
 
 function PpfPage() {
-  const [serviceText, setServiceText] = useState("");
-
-  const ask = (label: string) => {
-    setServiceText(`Usługa: Oklejanie folią PPF – ${label}\n\n`);
-    document.getElementById("zlec-serwis")?.scrollIntoView({ behavior: "smooth" });
-    window.setTimeout(() => document.getElementById("service-description")?.focus({ preventScroll: true }), 600);
-  };
-
   const primary = "brand-bg h-auto rounded-sm border border-pro-accent px-6 py-3 text-primary-foreground shadow-none hover:brightness-110";
 
   return (
@@ -110,7 +101,7 @@ function PpfPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild className={primary}>
-                <a href="#zlec-serwis">Zapytaj o wycenę</a>
+                <a href="#kontakt">Zapytaj o wycenę</a>
               </Button>
               <Button asChild variant="outline" className="h-auto rounded-sm border-pro-line bg-pro-bg/60 px-6 py-3 text-pro-text shadow-none hover:border-pro-accent hover:bg-pro-panel hover:text-pro-text">
                 <a href="#pakiety">Zobacz pakiety</a>
@@ -194,8 +185,8 @@ function PpfPage() {
             <p className="mt-5 flex-1 text-[14px] leading-relaxed text-pro-muted">
               To rozsądny wybór, jeśli chcesz zabezpieczyć rower przed najczęściej występującymi uszkodzeniami, jednocześnie zachowując atrakcyjną cenę usługi.
             </p>
-            <Button type="button" onClick={() => ask("Pakiet Basic (od 300 zł)")} className={`${primary} mt-7 w-full sm:w-fit`}>
-              Zapytaj o wycenę <ChevronRight aria-hidden="true" />
+            <Button asChild className={`${primary} mt-7 w-full sm:w-fit`}>
+              <a href="#kontakt">Zapytaj o wycenę <ChevronRight aria-hidden="true" /></a>
             </Button>
           </article>
 
@@ -214,8 +205,8 @@ function PpfPage() {
             <p className="mt-5 flex-1 text-[14px] leading-relaxed text-pro-muted">
               Bez przypadkowych krawędzi, nieestetycznych nadmiarów czy uniwersalnych naklejek niedopasowanych do konstrukcji. Liczy się zarówno ochrona, jak i estetyka wykonania.
             </p>
-            <Button type="button" onClick={() => ask("Pakiet Full Bike (wycena indywidualna)")} className={`${primary} mt-7 w-full sm:w-fit`}>
-              Zapytaj o wycenę <ChevronRight aria-hidden="true" />
+            <Button asChild className={`${primary} mt-7 w-full sm:w-fit`}>
+              <a href="#kontakt">Zapytaj o wycenę <ChevronRight aria-hidden="true" /></a>
             </Button>
           </article>
         </div>
@@ -257,13 +248,6 @@ function PpfPage() {
           ))}
         </ol>
       </section>
-
-      <ServiceRequestSection
-        serviceText={serviceText}
-        setServiceText={setServiceText}
-        eyebrow="Zapytaj o wycenę"
-        title="Wycena oklejania folią PPF"
-      />
 
       <ContactMapSection />
 

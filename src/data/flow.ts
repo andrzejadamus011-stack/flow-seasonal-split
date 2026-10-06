@@ -1,10 +1,11 @@
 export const contact = {
-  phone: "794 978 787\n664 993 492",
-  phoneHref: "tel:+48794978787",
+  phone: "798 180 747",
+  phoneHref: "tel:+48798180747",
   phones: [
-    { label: "794 978 787", href: "tel:+48794978787" },
-    { label: "664 993 492", href: "tel:+48664993492" },
+    { label: "798 180 747", href: "tel:+48798180747" },
   ],
+  facebook: "https://www.facebook.com/profile.php?id=61595148867732",
+  instagram: "https://www.instagram.com/flowserwis?stkn=ajgxYXVoMzdnMnFq&utm_source=qr",
   email: "kontakt@flowserwis.pl",
   www: "flowserwis.pl",
   address: "ul. Krakowska 50, 32-083 Szczyglice",

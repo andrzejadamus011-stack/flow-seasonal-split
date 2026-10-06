@@ -8,7 +8,7 @@ export const Route = createFileRoute("/rowery")({
       {
         name: "description",
         content:
-          "Profesjonalny serwis rowerowy FLOW: przeglądy, regulacje, centrowanie kół, serwis amortyzatorów i e-bike. Cennik i kontakt: 664 993 492.",
+          "Profesjonalny serwis rowerowy FLOW: przeglądy, regulacje, centrowanie kół, serwis amortyzatorów i e-bike. Cennik i kontakt: 798 180 747.",
       },
       { property: "og:title", content: "FLOW Serwis Rowerowy" },
       {

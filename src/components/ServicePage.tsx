@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { SocialLinks } from "@/components/SocialLinks";
 import logo from "@/assets/flow-logo.png";
 import { contact, type PriceGroup, type Section } from "@/data/flow";
 
@@ -26,13 +27,14 @@ export function ServicePage(props: Props) {
           <Link to="/" aria-label="FLOW – strona główna">
             <img src={logo} alt="FLOW" width={1389} height={784} className="h-10 w-auto" />
           </Link>
-          <div className="flex items-center gap-5 text-[13px]">
+          <div className="flex flex-wrap items-center justify-end gap-3 text-[13px]">
             <a href="#zakres" className="hidden text-ink-muted transition hover:text-ink sm:block">
               Zakres
             </a>
             <a href="#cennik" className="hidden text-ink-muted transition hover:text-ink sm:block">
               Cennik
             </a>
+            <Link to="/oklejanie-ppf" className="text-ink-muted transition hover:text-ink">Oklejanie PPF</Link>
             <Link to={props.otherHref} className="text-ink-muted transition hover:text-ink">
               {props.otherLabel}
             </Link>
@@ -194,6 +196,7 @@ export function ServicePage(props: Props) {
             </div>
           </dl>
         </div>
+        <div className="mt-8"><SocialLinks /></div>
         <div className="mt-10 overflow-hidden rounded-2xl border border-hairline">
           <iframe
             title="Mapa – FLOW Szczyglice"
@@ -208,7 +211,7 @@ export function ServicePage(props: Props) {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-[13px] text-ink-muted sm:flex-row">
           <img src={logo} alt="FLOW" width={1389} height={784} className="h-9 w-auto" loading="lazy" />
           <p>
-            FLOW · {contact.www} · {contact.phone}
+            FLOW · {contact.www} · <a href={contact.phoneHref}>{contact.phone}</a>
           </p>
         </div>
       </footer>
