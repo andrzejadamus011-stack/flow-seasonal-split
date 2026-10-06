@@ -17,15 +17,24 @@ const navigation = [
 /** prefix: "" on the bike page, "/rowery" on subpages so links reach main-page sections. */
 export function BikeHeader({ prefix = "" }: { prefix?: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const isSubpage = prefix !== "";
   return (
     <header className="sticky top-0 z-30 border-b border-pro-line bg-pro-bg/95 backdrop-blur-xl">
       <div className="h-1 brand-bg" />
       <nav className="mx-auto flex min-h-22 max-w-6xl items-center justify-between gap-5 px-6 py-2 md:min-h-30 md:py-3">
-        <Link to="/" aria-label="FLOW – strona główna" className="shrink-0">
+        <Link to={isSubpage ? "/rowery" : "/"} aria-label={isSubpage ? "FLOW – wróć do serwisu rowerowego" : "FLOW – strona główna"} className="shrink-0">
           <img src={logo} alt="FLOW" width={1389} height={784} className="h-16 w-auto drop-shadow-lg md:h-24" />
         </Link>
 
         <div className="hidden items-center gap-7 text-[13px] font-semibold uppercase lg:flex">
+          {isSubpage && (
+            <Link
+              to="/rowery"
+              className="border-b border-transparent py-2 text-pro-muted transition hover:border-pro-accent hover:text-pro-text"
+            >
+              Wróć do serwisu
+            </Link>
+          )}
           {navigation.map((item) =>
             "cta" in item && item.cta ? (
               <Button key={item.href} asChild className="brand-bg rounded-sm border border-pro-accent px-5 text-primary-foreground shadow-none hover:brightness-110">
