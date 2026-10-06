@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NartyRouteImport } from './routes/narty'
+import { Route as OklejaniePpfRouteImport } from './routes/oklejanie-ppf'
 import { Route as RoweryRouteImport } from './routes/rowery'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const NartyRoute = NartyRouteImport.update({
   path: '/narty',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OklejaniePpfRoute = OklejaniePpfRouteImport.update({
+  id: '/oklejanie-ppf',
+  path: '/oklejanie-ppf',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoweryRoute = RoweryRouteImport.update({
   id: '/rowery',
   path: '/rowery',
@@ -32,30 +38,34 @@ const RoweryRoute = RoweryRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/narty': typeof NartyRoute
+  '/oklejanie-ppf': typeof OklejaniePpfRoute
   '/rowery': typeof RoweryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/narty': typeof NartyRoute
+  '/oklejanie-ppf': typeof OklejaniePpfRoute
   '/rowery': typeof RoweryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/narty': typeof NartyRoute
+  '/oklejanie-ppf': typeof OklejaniePpfRoute
   '/rowery': typeof RoweryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/narty' | '/rowery'
+  fullPaths: '/' | '/narty' | '/oklejanie-ppf' | '/rowery'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/narty' | '/rowery'
-  id: '__root__' | '/' | '/narty' | '/rowery'
+  to: '/' | '/narty' | '/oklejanie-ppf' | '/rowery'
+  id: '__root__' | '/' | '/narty' | '/oklejanie-ppf' | '/rowery'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NartyRoute: typeof NartyRoute
+  OklejaniePpfRoute: typeof OklejaniePpfRoute
   RoweryRoute: typeof RoweryRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NartyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/oklejanie-ppf': {
+      id: '/oklejanie-ppf'
+      path: '/oklejanie-ppf'
+      fullPath: '/oklejanie-ppf'
+      preLoaderRoute: typeof OklejaniePpfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rowery': {
       id: '/rowery'
       path: '/rowery'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NartyRoute: NartyRoute,
+  OklejaniePpfRoute: OklejaniePpfRoute,
   RoweryRoute: RoweryRoute,
 }
 export const routeTree = rootRouteImport
