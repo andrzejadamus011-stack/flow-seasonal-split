@@ -254,28 +254,31 @@ export function BikeServicePage() {
             const { number, title, description, price, Icon } = service;
             const inner = (
               <>
-
-              type="button"
-              key={number}
-              onClick={() => pickService(`${title} (${price})`)}
-              className="pro-card-glow group flex flex-col border border-pro-line bg-pro-panel p-6 text-left"
-            >
-              <div className="flex w-full items-center justify-between">
-                <span className="flex size-11 items-center justify-center rounded-sm border border-pro-line bg-pro-raised text-pro-accent transition group-hover:border-pro-accent group-hover:bg-pro-accent group-hover:text-primary-foreground">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
-                <span className="display text-xl text-pro-accent">{number}</span>
-              </div>
-              <h3 className="mt-6 text-lg">{title}</h3>
-              <p className="mt-3 flex-1 text-[14px] leading-relaxed text-pro-muted">{description}</p>
-              <div className="mt-5 flex w-full items-center justify-between border-t border-pro-line pt-4">
-                <span className="display text-xl text-pro-accent">{price}</span>
-                <span className="flex items-center gap-1 text-sm text-pro-muted transition group-hover:text-pro-accent">
-                  Zleć <ChevronRight className="size-4" aria-hidden="true" />
-                </span>
-              </div>
-            </button>
-          ))}
+                <div className="flex w-full items-center justify-between">
+                  <span className="flex size-11 items-center justify-center rounded-sm border border-pro-line bg-pro-raised text-pro-accent transition group-hover:border-pro-accent group-hover:bg-pro-accent group-hover:text-primary-foreground">
+                    <Icon className="size-5" aria-hidden="true" />
+                  </span>
+                  <span className="display text-xl text-pro-accent">{number}</span>
+                </div>
+                <h3 className="mt-6 text-lg">{title}</h3>
+                <p className="mt-3 flex-1 text-[14px] leading-relaxed text-pro-muted">{description}</p>
+                <div className="mt-5 flex w-full items-center justify-between border-t border-pro-line pt-4">
+                  <span className="display text-xl text-pro-accent">{price}</span>
+                  <span className="flex items-center gap-1 text-sm text-pro-muted transition group-hover:text-pro-accent">
+                    {"href" in service ? "Zobacz szczegóły" : "Zleć"} <ChevronRight className="size-4" aria-hidden="true" />
+                  </span>
+                </div>
+              </>
+            );
+            const cls = "pro-card-glow group flex flex-col border border-pro-line bg-pro-panel p-6 text-left";
+            return "href" in service ? (
+              <Link key={number} to="/oklejanie-ppf" className={cls}>{inner}</Link>
+            ) : (
+              <button type="button" key={number} onClick={() => pickService(`${title} (${price})`)} className={cls}>
+                {inner}
+              </button>
+            );
+          })}
         </div>
 
         <div className="mt-16">
