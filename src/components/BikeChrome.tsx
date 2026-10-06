@@ -68,6 +68,15 @@ export function BikeHeader({ prefix = "" }: { prefix?: string }) {
       {menuOpen && (
         <div className="border-t border-pro-line bg-pro-bg px-6 py-4 lg:hidden">
           <div className="mx-auto flex max-w-6xl flex-col gap-1">
+            {isSubpage && (
+              <Link
+                to="/rowery"
+                onClick={() => setMenuOpen(false)}
+                className="border-b border-pro-line px-3 py-3 text-sm font-semibold uppercase text-pro-muted transition hover:text-pro-text"
+              >
+                Wróć do serwisu
+              </Link>
+            )}
             {navigation.map((item) =>
               "cta" in item ? (
                 <Button key={item.href} asChild className="brand-bg mt-2 rounded-sm text-primary-foreground">
