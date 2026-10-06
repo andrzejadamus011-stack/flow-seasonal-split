@@ -6,14 +6,10 @@ import {
   ChevronRight,
   CircleDot,
   Gauge,
-  Menu,
-  Phone,
   Settings,
   Wrench,
-  X,
 } from "lucide-react";
-import { useState, type FormEvent } from "react";
-import logo from "@/assets/flow-logo.png";
+import { useState } from "react";
 import heroBike from "@/assets/hero-bike-pro.jpg";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,8 +18,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { contact } from "@/data/flow";
 
 const navigation = [
@@ -331,6 +325,11 @@ export function BikeServicePage() {
                       </li>
                     ))}
                   </ul>
+                  {"href" in group && (
+                    <Link to="/oklejanie-ppf" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-pro-accent transition hover:brightness-110">
+                      Szczegóły <ChevronRight className="size-4" aria-hidden="true" />
+                    </Link>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}
