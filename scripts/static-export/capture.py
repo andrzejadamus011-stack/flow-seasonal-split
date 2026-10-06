@@ -5,7 +5,7 @@ async def main():
     b=await p.chromium.launch(headless=True)
     pg=await b.new_page(viewport={"width":1280,"height":1800})
     out={}
-    for path in ["/","/rowery","/narty"]:
+    for path in ["/","/rowery","/narty","/oklejanie-ppf"]:
       await pg.goto("http://localhost:8080"+path, wait_until="networkidle")
       await pg.wait_for_timeout(1500)
       out[path]=await pg.evaluate("""()=>{

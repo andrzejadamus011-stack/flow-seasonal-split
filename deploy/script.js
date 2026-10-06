@@ -71,8 +71,21 @@
       card.querySelectorAll("*").forEach(function (el) {
         if (!price && el.children.length === 0 && /^od\s/i.test(el.textContent.trim())) price = el.textContent.trim();
       });
-      var label = (i >= 6 ? "Przegląd: " : "") + title + (price ? " (" + price + ")" : "");
+      var label = (/Wybierz pakiet/.test(card.textContent) ? "Przegląd: " : "") + title + (price ? " (" + price + ")" : "");
       if (textarea) textarea.value = "Usługa: " + label + "\n\n";
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+      setTimeout(function () { if (textarea) textarea.focus({ preventScroll: true }); }, 600);
+    });
+  });
+
+  // ---------- Podstrona PPF: przyciski pakietów ----------
+  document.querySelectorAll("#pakiety article").forEach(function (art) {
+    var btn = art.querySelector("button");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var name = art.querySelector("p").textContent.replace(/^\d+\.\s*/, "").trim();
+      var price = art.querySelectorAll("p")[1].textContent.trim();
+      if (textarea) textarea.value = "Usługa: Oklejanie folią PPF – " + name + " (" + price + ")\n\n";
       if (target) target.scrollIntoView({ behavior: "smooth" });
       setTimeout(function () { if (textarea) textarea.focus({ preventScroll: true }); }, 600);
     });
