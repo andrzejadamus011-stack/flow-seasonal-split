@@ -27,6 +27,8 @@ def acc(m):
 body_r=re.sub(r'<div data-state="open" data-orientation="vertical" class="border-b border-pro-line"[^>]*>.*?role="region"',acc,body_r,flags=re.S)
 body_r=re.sub(r'animate-accordion-(down|up)','',body_r)
 pages["/rowery"]["body"]=body_r
+menu_ppf=r["menu"].replace('class="border-t','id="mobile-menu" hidden class="border-t',1).replace('href="#','href="/rowery#')
+pages["/oklejanie-ppf"]["body"]=pages["/oklejanie-ppf"]["body"].replace('</nav>','</nav>'+menu_ppf,1)
 FILES={"/":"index.html","/rowery":"rowery.html","/narty":"narty.html","/oklejanie-ppf":"oklejanie-ppf.html"}
 CANON="https://TWOJA-DOMENA.pl"
 for k,fn in FILES.items():
