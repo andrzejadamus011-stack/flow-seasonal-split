@@ -10,7 +10,7 @@ export const Route = createFileRoute("/narty")({
       {
         name: "description",
         content:
-          "Serwis narciarski FLOW: ostrzenie krawędzi, smarowanie ślizgu, regulacja wiązań, serwis desek snowboardowych. Cennik i kontakt: 664 993 492.",
+          "Serwis narciarski FLOW: ostrzenie krawędzi, smarowanie ślizgu, regulacja wiązań, serwis desek snowboardowych. Cennik i kontakt: 798 180 747.",
       },
       { property: "og:title", content: "FLOW Serwis Narciarski" },
       {

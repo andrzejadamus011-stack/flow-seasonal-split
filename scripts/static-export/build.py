@@ -1,5 +1,7 @@
 import json,re,shutil,os
+script=open("/dev-server/deploy/script.js").read()
 D="/dev-server/deploy"; shutil.rmtree(D,ignore_errors=True); os.makedirs(D+"/assets/images")
+open(D+"/script.js","w").write(script)
 pages=json.load(open("/dev-server/scripts/static-export/pages.json")); r=json.load(open("/dev-server/scripts/static-export/rowery.json"))
 for f in ["choose-bike.jpg","choose-ski.jpg","flow-logo.png","hero-bike-pro.jpg","hero-ski.jpg","hero-ppf.jpg"]:
   shutil.copy("/dev-server/src/assets/"+f,D+"/assets/images/"+f)
