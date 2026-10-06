@@ -1,6 +1,5 @@
 (function () {
   "use strict";
-  var EMAIL = "kontakt@flowserwis.pl";
 
   // ---------- Ekran startowy: wybór sezonu ----------
   var TRAIL = "M -80 820 C 220 760, 380 560, 640 600 S 1060 820, 1300 520 S 1560 160, 1700 120";
@@ -60,51 +59,4 @@
     });
   });
 
-  // ---------- Wybór usługi -> formularz ----------
-  var textarea = document.getElementById("service-description");
-  var target = document.getElementById("zlec-serwis");
-  document.querySelectorAll("button.pro-card-glow").forEach(function (card, i) {
-    card.addEventListener("click", function () {
-      var titleEl = card.querySelector("h3");
-      var title = titleEl ? titleEl.textContent.trim() : "";
-      var price = "";
-      card.querySelectorAll("*").forEach(function (el) {
-        if (!price && el.children.length === 0 && /^od\s/i.test(el.textContent.trim())) price = el.textContent.trim();
-      });
-      var label = (/Wybierz pakiet/.test(card.textContent) ? "Przegląd: " : "") + title + (price ? " (" + price + ")" : "");
-      if (textarea) textarea.value = "Usługa: " + label + "\n\n";
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-      setTimeout(function () { if (textarea) textarea.focus({ preventScroll: true }); }, 600);
-    });
-  });
-
-  // ---------- Podstrona PPF: przyciski pakietów ----------
-  document.querySelectorAll("#pakiety article").forEach(function (art) {
-    var btn = art.querySelector("button");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      var name = art.querySelector("p").textContent.replace(/^\d+\.\s*/, "").trim();
-      var price = art.querySelectorAll("p")[1].textContent.trim();
-      if (textarea) textarea.value = "Usługa: Oklejanie folią PPF – " + name + " (" + price + ")\n\n";
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-      setTimeout(function () { if (textarea) textarea.focus({ preventScroll: true }); }, 600);
-    });
-  });
-
-  // ---------- Wysyłka formularza (program pocztowy) ----------
-  var form = document.querySelector("#zlec-serwis form");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var fd = new FormData(form);
-      var g = function (k, max) { return String(fd.get(k) || "").trim().slice(0, max); };
-      var name = g("name", 80), phone = g("phone", 30), bike = g("bikeType", 30),
-          desc = g("description", 1200), date = g("preferredDate", 30);
-      if (!name || !phone || !bike || !desc || !date) return;
-      var subject = encodeURIComponent("Zgłoszenie serwisowe – " + name);
-      var body = encodeURIComponent("Imię: " + name + "\nTelefon: " + phone + "\nTyp roweru: " + bike +
-        "\nPreferowany termin: " + date + "\n\nOpis usterki / zakres usługi:\n" + desc);
-      window.location.href = "mailto:" + EMAIL + "?subject=" + subject + "&body=" + body;
-    });
-  }
 })();

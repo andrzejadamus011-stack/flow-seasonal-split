@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BikeFooter, BikeHeader, ContactMapSection, ServiceRequestSection } from "@/components/BikeChrome";
+import { BikeFooter, BikeHeader, ContactMapSection } from "@/components/BikeChrome";
 import {
   Bike,
   CalendarDays,
@@ -9,7 +9,6 @@ import {
   Settings,
   Wrench,
 } from "lucide-react";
-import { useState } from "react";
 import heroBike from "@/assets/hero-bike-pro.jpg";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,15 +17,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { contact } from "@/data/flow";
-
-const navigation = [
-  { label: "Usługi", href: "#uslugi" },
-  { label: "Cennik", href: "#cennik" },
-  { label: "Zleć serwis", href: "#zlec-serwis", cta: true },
-  { label: "O nas", href: "#o-nas" },
-  { label: "Kontakt", href: "#kontakt" },
-] as const;
 
 const services = [
   {
@@ -169,16 +159,6 @@ const packages = [
 ] as const;
 
 export function BikeServicePage() {
-  const [serviceText, setServiceText] = useState("");
-
-  const pickService = (label: string) => {
-    setServiceText(`Usługa: ${label}\n\n`);
-    document.getElementById("zlec-serwis")?.scrollIntoView({ behavior: "smooth" });
-    window.setTimeout(() => document.getElementById("service-description")?.focus({ preventScroll: true }), 600);
-  };
-
-
-
   return (
     <div className="bike-pro theme-bike min-h-screen scroll-smooth bg-pro-bg text-pro-text">
       <BikeHeader />
@@ -203,7 +183,7 @@ export function BikeServicePage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild className="brand-bg h-auto rounded-sm border border-pro-accent px-6 py-3 text-primary-foreground shadow-none hover:brightness-110">
-              <a href="#zlec-serwis">Zleć serwis</a>
+              <a href="#kontakt">Zleć serwis</a>
             </Button>
             <Button asChild variant="outline" className="h-auto rounded-sm border-pro-line bg-pro-bg/60 px-6 py-3 text-pro-text shadow-none hover:border-pro-accent hover:bg-pro-panel hover:text-pro-text">
               <a href="#cennik">Zobacz cennik</a>
@@ -268,9 +248,9 @@ export function BikeServicePage() {
             return "href" in service ? (
               <Link key={number} to="/oklejanie-ppf" className={cls}>{inner}</Link>
             ) : (
-              <button type="button" key={number} onClick={() => pickService(`${title} (${price})`)} className={cls}>
+              <a key={number} href="#kontakt" className={cls}>
                 {inner}
-              </button>
+              </a>
             );
           })}
         </div>
@@ -280,10 +260,9 @@ export function BikeServicePage() {
           <h2 className="mt-3 text-3xl sm:text-4xl">Pakiety przeglądów</h2>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {packages.map((pkg) => (
-              <button
-                type="button"
+              <a
+                href="#kontakt"
                 key={pkg.name}
-                onClick={() => pickService(`Przegląd: ${pkg.name} (${pkg.price})`)}
                 className="pro-card-glow group flex flex-col border border-pro-line bg-pro-panel p-6 text-left"
               >
                 <h3 className="text-xl">{pkg.name}</h3>
@@ -300,7 +279,7 @@ export function BikeServicePage() {
                 <span className="mt-6 flex h-11 w-full items-center justify-center gap-1 rounded-sm border border-pro-accent text-sm font-semibold text-pro-accent transition group-hover:bg-pro-accent group-hover:text-primary-foreground">
                   Wybierz pakiet <ChevronRight className="size-4" aria-hidden="true" />
                 </span>
-              </button>
+              </a>
             ))}
           </div>
         </div>
@@ -340,8 +319,6 @@ export function BikeServicePage() {
           </p>
         </div>
       </section>
-
-      <ServiceRequestSection serviceText={serviceText} setServiceText={setServiceText} />
 
       <ContactMapSection />
 
