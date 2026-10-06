@@ -719,6 +719,7 @@
   .hover\:text-sidebar-accent-foreground:hover { color: var(--sidebar-accent-foreground); }
   .hover\:no-underline:hover { text-decoration-line: none; }
   .hover\:underline:hover { text-decoration-line: underline; }
+  .hover\:opacity-80:hover { opacity: 0.8; }
   .hover\:opacity-90:hover { opacity: 0.9; }
   .hover\:opacity-100:hover { opacity: 1; }
   .hover\:shadow-\[0_0_0_1px_var\(--sidebar-accent\)\]:hover { --tw-shadow: 0 0 0 1px var(--tw-shadow-color, var(--sidebar-accent)); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow); }
