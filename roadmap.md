@@ -1,8 +1,8 @@
 # Roadmap
 
-- [ ] Dodać PPF do menu, usunąć formularze i przekierować przyciski do kontaktu.
-- [ ] Ustawić jeden telefon i linki społecznościowe na wszystkich stronach.
-- [ ] Zaktualizować wersję FTP i sprawdzić działanie zmian.
+- [x] Dodać PPF do menu, usunąć formularze i przekierować przyciski do kontaktu.
+- [x] Ustawić jeden telefon i linki społecznościowe na wszystkich stronach.
+- [x] Zaktualizować wersję FTP i sprawdzić działanie zmian.
 
 - [x] Powiększyć logo i zbudować nową nawigację strony rowerowej.
 - [x] Zastąpić zakres usług sześcioma kartami.
