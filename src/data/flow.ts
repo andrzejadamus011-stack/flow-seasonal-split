@@ -5,7 +5,7 @@ export const contact = {
     { label: "798 180 747", href: "tel:+48798180747" },
   ],
   facebook: "https://www.facebook.com/profile.php?id=61595148867732",
-  instagram: "https://www.instagram.com/flowserwis?stkn=ajgxYXVoMzdnMnFq&utm_source=qr",
+  instagram: "https://www.instagram.com/flowserwis/",
   email: "kontakt@flowserwis.pl",
   www: "flowserwis.pl",
   address: "ul. Krakowska 50, 32-083 Szczyglice",
