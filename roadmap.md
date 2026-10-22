@@ -15,3 +15,6 @@
 - [x] Przeprojektować stronę rowerową na profesjonalny ciemny styl inspirowany branżą MTB.
 - [x] Przygotować nowe, mocne zdjęcie główne i interakcje po najechaniu.
 - [x] Zweryfikować cały widok na desktopie i mobile.
+- [x] Nadać stronie narciarskiej ten sam profesjonalny ciemny styl co stronie rowerowej.
+- [x] Usunąć kafelek „Serwis rowerowy” z paska menu na stronie narciarskiej.
+- [x] Odświeżyć wersję FTP i sprawdzić ją na komputerze i telefonie.
