@@ -24,7 +24,7 @@ const packages = [
 export function SkiServicePage() {
   return (
     <div className="bike-pro ski-pro theme-ski min-h-screen scroll-smooth bg-pro-bg text-pro-text">
-      <BikeHeader cta={{ label: "Serwis rowerowy", to: "/rowery" }} />
+      <BikeHeader cta={null} />
 
       <section className="relative min-h-[620px] overflow-hidden border-b border-pro-line md:min-h-[720px]">
         <img src={heroSki} alt="Serwis narciarski FLOW" width={1600} height={1104} className="absolute inset-0 h-full w-full object-cover object-[62%_center] transition-transform duration-700 hover:scale-[1.025]" />

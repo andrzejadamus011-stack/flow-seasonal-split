@@ -15,7 +15,7 @@ const navigation = [
 ] as const;
 
 /** prefix: "" on the bike page, "/rowery" on subpages so links reach main-page sections. */
-export function BikeHeader({ prefix = "", cta }: { prefix?: string; cta?: { label: string; to: "/rowery" | "/narty" | "/oklejanie-ppf" } }) {
+export function BikeHeader({ prefix = "", cta }: { prefix?: string; cta?: { label: string; to: "/rowery" | "/narty" | "/oklejanie-ppf" } | null }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const isSubpage = prefix !== "";
   return (
@@ -37,9 +37,11 @@ export function BikeHeader({ prefix = "", cta }: { prefix?: string; cta?: { labe
           )}
           {navigation.map((item) =>
             "cta" in item && item.cta ? (
-              <Button key={item.href} asChild className="brand-bg rounded-sm border border-pro-accent px-5 text-primary-foreground shadow-none hover:brightness-110">
-                <Link to={cta?.to ?? "/oklejanie-ppf"}>{cta?.label ?? item.label}</Link>
-              </Button>
+              cta === null ? null : (
+                <Button key={item.href} asChild className="brand-bg rounded-sm border border-pro-accent px-5 text-primary-foreground shadow-none hover:brightness-110">
+                  <Link to={cta?.to ?? "/oklejanie-ppf"}>{cta?.label ?? item.label}</Link>
+                </Button>
+              )
             ) : (
               <a
                 key={item.href}
@@ -79,9 +81,11 @@ export function BikeHeader({ prefix = "", cta }: { prefix?: string; cta?: { labe
             )}
             {navigation.map((item) =>
               "cta" in item ? (
-                <Button key={item.href} asChild className="brand-bg mt-2 rounded-sm text-primary-foreground">
-                  <Link to={cta?.to ?? "/oklejanie-ppf"} onClick={() => setMenuOpen(false)}>{cta?.label ?? item.label}</Link>
-                </Button>
+                cta === null ? null : (
+                  <Button key={item.href} asChild className="brand-bg mt-2 rounded-sm text-primary-foreground">
+                    <Link to={cta?.to ?? "/oklejanie-ppf"} onClick={() => setMenuOpen(false)}>{cta?.label ?? item.label}</Link>
+                  </Button>
+                )
               ) : (
               <a
                 key={item.href}
