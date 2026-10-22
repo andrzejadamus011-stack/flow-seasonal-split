@@ -353,3 +353,15 @@ h1, h2, h3, .display {
 @media (prefers-reduced-motion: reduce) {
   .trail-line, .trail-glow { animation-duration: 0.01s; }
 }
+
+/* ---------- FLOW ski: same pro style, winter blue ---------- */
+.bike-pro.ski-pro {
+  --bike-soft: oklch(0.27 0.06 250);
+  --pro-bg: oklch(0.115 0.014 250);
+  --pro-panel: oklch(0.16 0.018 250);
+  --pro-raised: oklch(0.205 0.022 250);
+  --pro-line: oklch(0.32 0.03 250);
+  --pro-text: oklch(0.97 0.008 240);
+  --pro-muted: oklch(0.72 0.02 240);
+  --pro-accent: oklch(0.68 0.15 245);
+}
