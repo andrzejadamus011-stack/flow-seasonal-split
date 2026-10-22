@@ -117,7 +117,7 @@ export function SkiServicePage() {
         <div className="mx-auto max-w-6xl px-6 py-14 md:py-18">
           <p className="eyebrow">Cennik</p>
           <h2 className="mt-3 text-3xl sm:text-4xl">Cennik</h2>
-          <Accordion type="multiple" defaultValue={[ski.prices[0].title]} className="mt-10 border-t border-pro-line">
+          <Accordion type="multiple" defaultValue={["Pakiety serwisowe"]} className="mt-10 border-t border-pro-line">
             {ski.prices.map((group) => (
               <AccordionItem key={group.title} value={group.title} className="border-pro-line">
                 <AccordionTrigger className="py-5 text-base hover:no-underline">{group.title}</AccordionTrigger>
